@@ -325,6 +325,16 @@
     justify-content: center;
     animation: rise 0.8s 0.1s cubic-bezier(.2,.8,.2,1) both;
   }
+  .hero-mascot {
+    position: absolute;
+    left: -78px;
+    bottom: -34px;
+    width: 300px;
+    pointer-events: none;
+  }
+  @media (max-width: 900px) {
+    .hero-mascot { display: none; }
+  }
   .device {
     width: 280px;
     border-radius: 34px;
@@ -615,6 +625,7 @@
       </div>
 
       <div class="hero-device-col">
+        <img class="hero-mascot" src="img/hero-mascot.png" alt="">
         <div class="float-card fc-1">
           <span class="ic">
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
