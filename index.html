@@ -473,7 +473,50 @@
     padding: 44px 48px;
   }
   @media (max-width: 760px) { .shelf { flex-direction: column; text-align: center; gap: 20px; padding: 36px 28px; } }
-  .shelf img { width: 140px; height: 140px; object-fit: contain; flex: none; }
+
+  .box-pop {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    flex: none;
+  }
+  .box-pop img { width: 100%; height: 100%; object-fit: contain; }
+  .box-pop .box-closed, .box-pop .box-open {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.3s ease;
+  }
+  .box-pop .box-open { opacity: 0; }
+  .box-pop:hover .box-closed { opacity: 0; }
+  .box-pop:hover .box-open { opacity: 1; }
+
+  .box-pop .tool-icon {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: 6px;
+    left: 50%;
+    margin-left: -22px;
+    opacity: 0;
+    transform: scale(0.4) translate(0, 6px) rotate(0deg);
+    transition: opacity 0.35s ease, transform 0.4s cubic-bezier(.2,.8,.2,1.4);
+    pointer-events: none;
+    filter: drop-shadow(0 8px 12px rgba(13,32,21,0.22));
+  }
+  .box-pop:hover .tool-icon { opacity: 1; }
+  .box-pop:hover .ti-1 { transform: scale(1) translate(-34px, -58px) rotate(-14deg); transition-delay: 0.02s; }
+  .box-pop:hover .ti-2 { transform: scale(1) translate(2px, -74px) rotate(5deg); transition-delay: 0.07s; }
+  .box-pop:hover .ti-3 { transform: scale(1) translate(38px, -58px) rotate(15deg); transition-delay: 0.12s; }
+  .box-pop:hover .ti-4 { transform: scale(1) translate(-58px, -14px) rotate(-20deg); transition-delay: 0.05s; }
+  .box-pop:hover .ti-5 { transform: scale(1) translate(58px, -14px) rotate(20deg); transition-delay: 0.1s; }
+  .box-pop:hover .ti-6 { transform: scale(1) translate(0, -98px) rotate(0deg); transition-delay: 0.15s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .box-pop .tool-icon, .box-pop .box-closed, .box-pop .box-open { transition: opacity 0.2s ease; transform: none; }
+    .box-pop:hover .ti-1, .box-pop:hover .ti-2, .box-pop:hover .ti-3,
+    .box-pop:hover .ti-4, .box-pop:hover .ti-5, .box-pop:hover .ti-6 { transform: none; }
+  }
+
   .shelf h2 { font-size: 1.5rem; margin: 8px 0 8px; }
   .shelf p { margin: 0 0 18px; color: var(--ink-soft); }
   .shelf-slot {
@@ -693,7 +736,16 @@
   <section class="band-sunken" id="gondola">
     <div class="wrap">
       <div class="shelf">
-        <img src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino.">
+        <div class="box-pop">
+          <img class="box-closed" src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino.">
+          <img class="box-open" src="img/box-open.png" alt="">
+          <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="">
+          <img class="tool-icon ti-2" src="img/tool-icon-2.png" alt="">
+          <img class="tool-icon ti-3" src="img/tool-icon-3.png" alt="">
+          <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="">
+          <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="">
+          <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="">
+        </div>
         <div>
           <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
           <h2>Neko Lista es la primera. No la única.</h2>
