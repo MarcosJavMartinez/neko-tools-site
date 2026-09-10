@@ -57,6 +57,9 @@
     --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
 
     --content-w: 1120px;
+
+    /* misma textura de fondo que usa la app real, detrás de las secciones claras */
+    --bg-texture: url("img/bg-pattern-light.jpg");
   }
 
   @media (prefers-color-scheme: dark) {
@@ -83,6 +86,8 @@
       --line:   #223028;
       --shadow: rgba(0, 0, 0, 0.35);
       --shadow-strong: rgba(0, 0, 0, 0.55);
+
+      --bg-texture: url("img/bg-pattern-dark.jpg");
     }
   }
 
@@ -109,6 +114,8 @@
     --line:   #223028;
     --shadow: rgba(0, 0, 0, 0.35);
     --shadow-strong: rgba(0, 0, 0, 0.55);
+
+    --bg-texture: url("img/bg-pattern-dark.jpg");
   }
 
   * { box-sizing: border-box; }
@@ -123,6 +130,18 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--bg-texture);
+    background-size: 560px 560px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.6;
   }
 
   @media (prefers-reduced-motion: reduce) {
