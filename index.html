@@ -347,6 +347,15 @@
   @media (max-width: 900px) {
     .hero-mascot { display: none; }
   }
+  .hero-mascot-mobile {
+    display: none;
+    width: 160px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 16px 22px var(--shadow-strong));
+  }
+  @media (max-width: 900px) {
+    .hero-mascot-mobile { display: block; }
+  }
   .device {
     width: 280px;
     border-radius: 34px;
@@ -701,6 +710,8 @@
           <a class="btn btn-ghost" href="#features">Ver funciones</a>
         </div>
       </div>
+
+      <img class="hero-mascot-mobile" src="img/mascot-phone.png" alt="">
 
       <div class="hero-device-col">
         <img class="hero-mascot" src="img/hero-mascot.png" alt="">
