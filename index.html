@@ -342,6 +342,7 @@
     pointer-events: none;
     z-index: 2;
     filter: drop-shadow(0 20px 26px var(--shadow-strong));
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.2);
   }
   @media (max-width: 900px) {
     .hero-mascot { display: none; }
@@ -385,12 +386,8 @@
     .float-card { display: none; }
   }
 
-  .hero-device-col .device {
-    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.2), box-shadow 0.3s ease;
-  }
-  .hero-device-col:hover .device {
-    transform: translateY(-6px) rotate(-1deg);
-    box-shadow: 0 58px 100px -30px var(--shadow-strong), 0 20px 36px -14px var(--shadow-strong);
+  .hero-device-col:hover .hero-mascot {
+    transform: translateY(-10px) rotate(-3deg);
   }
   .float-card .ic {
     width: 30px; height: 30px; border-radius: 9px;
