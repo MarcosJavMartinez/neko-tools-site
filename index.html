@@ -249,7 +249,8 @@
     color: var(--ink);
     white-space: nowrap;
   }
-  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; transition: transform 0.25s cubic-bezier(.2,.8,.2,1.3); }
+  .brand:hover img { transform: rotate(-8deg) scale(1.08); }
   .nav-links {
     display: flex;
     align-items: center;
@@ -321,7 +322,9 @@
     background: var(--mint);
     color: var(--pine-deep);
     border: 1px solid var(--mint-line);
+    transition: transform 0.15s ease, border-color 0.15s ease;
   }
+  .tag:hover { transform: translateY(-2px); border-color: var(--pine); }
   .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
   /* ---------- device mockup ---------- */
@@ -369,10 +372,25 @@
   }
   .float-card.fc-1 { top: -78px; left: -20px; }
   .float-card.fc-2 { bottom: -78px; right: -20px; }
+  .float-card {
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1.2), box-shadow 0.25s ease;
+  }
+  .float-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 26px 44px -18px var(--shadow-strong);
+  }
   @media (max-width: 900px) {
     /* En una sola columna el telefono ocupa casi todo el ancho: estas
        tarjetas ya no tienen donde flotar al costado sin taparlo. */
     .float-card { display: none; }
+  }
+
+  .hero-device-col .device {
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.2), box-shadow 0.3s ease;
+  }
+  .hero-device-col:hover .device {
+    transform: translateY(-6px) rotate(-1deg);
+    box-shadow: 0 58px 100px -30px var(--shadow-strong), 0 20px 36px -14px var(--shadow-strong);
   }
   .float-card .ic {
     width: 30px; height: 30px; border-radius: 9px;
@@ -386,6 +404,20 @@
   @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
     to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(.2,.8,.2,1), transform 0.7s cubic-bezier(.2,.8,.2,1);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  .reveal.reveal-left  { transform: translateX(-32px); }
+  .reveal.reveal-right { transform: translateX(32px); }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
   }
 
   /* ---------- section shell ---------- */
@@ -408,13 +440,21 @@
     border: 1px solid var(--line);
     border-radius: 20px;
     padding: 28px 26px;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .feature:hover {
+    transform: translateY(-6px);
+    border-color: var(--mint-line);
+    box-shadow: 0 26px 46px -26px var(--shadow-strong);
   }
   .feature .ic {
     width: 44px; height: 44px; border-radius: 13px;
     background: var(--mint); color: var(--pine-deep);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 18px;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1.3);
   }
+  .feature:hover .ic { transform: scale(1.1) rotate(-6deg); }
   .feature h3 { font-size: 1.08rem; margin-bottom: 8px; }
   .feature p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
 
@@ -429,6 +469,11 @@
     max-width: 420px;
     box-shadow: 0 24px 50px -30px var(--shadow-strong);
     position: relative;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease;
+  }
+  .receipt:hover {
+    transform: translateY(-6px) rotate(-0.6deg);
+    box-shadow: 0 34px 64px -28px var(--shadow-strong);
   }
   .receipt-cut {
     position: absolute; left: 0; right: 0; height: 12px;
@@ -472,12 +517,19 @@
     max-width: 300px;
     overflow: hidden;
     line-height: 0;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease;
+  }
+  .gallery-card:hover .gallery-frame {
+    transform: translateY(-6px);
+    box-shadow: 0 40px 74px -28px var(--shadow-strong), 0 14px 26px -12px var(--shadow-strong);
   }
   .gallery-frame img {
     display: block;
     width: 100%;
     height: auto;
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
   }
+  .gallery-card:hover .gallery-frame img { transform: scale(1.06); }
   .gallery-card h3 { font-size: 0.98rem; margin-bottom: 4px; }
   .gallery-card p { margin: 0; color: var(--ink-soft); font-size: 0.86rem; }
 
@@ -490,6 +542,12 @@
     border: 1px solid var(--line);
     border-radius: 26px;
     padding: 44px 48px;
+    transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .shelf:hover {
+    transform: translateY(-4px);
+    border-color: var(--mint-line);
+    box-shadow: 0 26px 46px -30px var(--shadow-strong);
   }
   @media (max-width: 760px) { .shelf { flex-direction: column; text-align: center; gap: 20px; padding: 36px 28px; } }
 
@@ -558,7 +616,11 @@
 
   /* ---------- final cta ---------- */
   .final-cta { text-align: center; }
-  .final-cta img { width: 200px; height: 200px; object-fit: contain; margin: 0 auto 8px; display: block; }
+  .final-cta img {
+    width: 200px; height: 200px; object-fit: contain; margin: 0 auto 8px; display: block;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.3);
+  }
+  .final-cta img:hover { transform: translateY(-6px) rotate(-2deg); }
   .final-cta h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin-bottom: 10px; }
   .final-cta p { color: var(--ink-soft); margin: 0 0 30px; }
   .final-cta .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
@@ -597,6 +659,7 @@
     :root:not([data-theme="light"]) .theme-toggle svg.icon-moon { display: block; }
   }
 </style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
 
@@ -669,32 +732,38 @@
 
   <section id="features">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="kicker">Por qué se siente distinta</span>
         <h2>Tres detalles que la gente nota apenas la abre.</h2>
         <p>Nada de fricción: abrís, agregás, comprás.</p>
       </div>
       <div class="feature-grid">
-        <div class="feature">
-          <span class="ic">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </span>
-          <h3>Calcula el total en tiempo real</h3>
-          <p>Ves cuánto llevás gastado al instante, sin sacar la calculadora.</p>
+        <div class="reveal" style="--reveal-delay:0s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Calcula el total en tiempo real</h3>
+            <p>Ves cuánto llevás gastado al instante, sin sacar la calculadora.</p>
+          </div>
         </div>
-        <div class="feature">
-          <span class="ic">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          </span>
-          <h3>Lista simple y rápida</h3>
-          <p>Agregá, editá y tachá productos en segundos, con una mano libre.</p>
+        <div class="reveal" style="--reveal-delay:0.1s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Lista simple y rápida</h3>
+            <p>Agregá, editá y tachá productos en segundos, con una mano libre.</p>
+          </div>
         </div>
-        <div class="feature">
-          <span class="ic">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/></svg>
-          </span>
-          <h3>Diseño claro para comprar mejor</h3>
-          <p>Todo bien ordenado, sin enredos ni pasos de más.</p>
+        <div class="reveal" style="--reveal-delay:0.2s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/></svg>
+            </span>
+            <h3>Diseño claro para comprar mejor</h3>
+            <p>Todo bien ordenado, sin enredos ni pasos de más.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -702,12 +771,12 @@
 
   <section class="band-sunken" id="recibo">
     <div class="wrap receipt-wrap">
-      <div>
+      <div class="reveal reveal-left">
         <span class="kicker">Gasto, línea por línea</span>
         <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;">Todo lo que llevás, línea por línea.</h2>
         <p style="color:var(--ink-soft); font-size:1.05rem; max-width:44ch;">Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.</p>
       </div>
-      <div>
+      <div class="reveal reveal-right" style="--reveal-delay:0.1s">
         <div class="receipt">
           <div class="receipt-cut top"></div>
           <div class="receipt-head">
@@ -731,27 +800,27 @@
 
   <section id="galeria">
     <div class="wrap">
-      <div class="section-head center" style="margin-left:auto;margin-right:auto;">
+      <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
         <span class="kicker">Así se ve, sin maquillaje</span>
         <h2>Capturas reales de la app.</h2>
         <p>Tres pantallas, tres momentos de la compra.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-card">
+        <div class="gallery-card reveal" style="--reveal-delay:0s">
           <div class="gallery-frame">
             <img src="img/screenshot-lista.png" alt="Captura real de la lista de compras con productos, cantidades y precios.">
           </div>
           <h3>Tu lista</h3>
           <p>Todo lo que necesitás, siempre a mano.</p>
         </div>
-        <div class="gallery-card">
+        <div class="gallery-card reveal" style="--reveal-delay:0.1s">
           <div class="gallery-frame">
             <img src="img/screenshot-agregar.png" alt="Captura real del formulario para agregar un producto: nombre, cantidad y precio.">
           </div>
           <h3>Agregá en segundos</h3>
           <p>Nombre, cantidad y precio. Nada más.</p>
         </div>
-        <div class="gallery-card">
+        <div class="gallery-card reveal" style="--reveal-delay:0.2s">
           <div class="gallery-frame">
             <img src="img/screenshot-iconos.png" alt="Captura real del selector de íconos de producto.">
           </div>
@@ -764,25 +833,27 @@
 
   <section class="band-sunken" id="gondola">
     <div class="wrap">
-      <div class="shelf">
-        <div class="box-pop">
-          <img class="box-closed" src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino.">
-          <img class="box-open" src="img/box-open.png" alt="">
-          <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="">
-          <img class="tool-icon ti-2" src="img/tool-icon-2.png" alt="">
-          <img class="tool-icon ti-3" src="img/tool-icon-3.png" alt="">
-          <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="">
-          <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="">
-          <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="">
-        </div>
-        <div>
-          <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
-          <h2>Neko Lista es la primera. No la única.</h2>
-          <p>Estamos creando herramientas simples para la vida real, bajo un mismo techo: Neko Tools.</p>
-          <div class="shelf-actions">
-            <a class="btn btn-ghost btn-small" href="#marca">Conocer Neko Tools
-              <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+      <div class="reveal">
+        <div class="shelf">
+          <div class="box-pop">
+            <img class="box-closed" src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino.">
+            <img class="box-open" src="img/box-open.png" alt="">
+            <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="">
+            <img class="tool-icon ti-2" src="img/tool-icon-2.png" alt="">
+            <img class="tool-icon ti-3" src="img/tool-icon-3.png" alt="">
+            <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="">
+            <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="">
+            <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="">
+          </div>
+          <div>
+            <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
+            <h2>Neko Lista es la primera. No la única.</h2>
+            <p>Estamos creando herramientas simples para la vida real, bajo un mismo techo: Neko Tools.</p>
+            <div class="shelf-actions">
+              <a class="btn btn-ghost btn-small" href="#marca">Conocer Neko Tools
+                <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -790,7 +861,7 @@
   </section>
 
   <section class="final-cta">
-    <div class="wrap">
+    <div class="wrap reveal">
       <img src="img/mascot-illustration.png" alt="El gato de Neko Tools caminando y sonriendo, con una bolsa de compras llena de verduras, pan y leche.">
       <h2>¿Listo para una compra más simple?</h2>
       <p>Neko Lista te acompaña, del changuito al total.</p>
@@ -863,6 +934,27 @@
       try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
     });
   }
+})();
+
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
 })();
 </script>
 </body>
