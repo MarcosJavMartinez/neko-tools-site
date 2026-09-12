@@ -503,11 +503,18 @@
   .box-pop .box-closed, .box-pop .box-open {
     position: absolute;
     inset: 0;
+    transform-origin: center bottom;
     transition: opacity 0.3s ease;
   }
-  .box-pop .box-open { opacity: 0; }
+  .box-pop .box-open {
+    opacity: 0;
+    /* box-open.png dibuja la caja más chica dentro del lienzo para dejar
+       lugar a las solapas abiertas; este scale la empareja con la cerrada. */
+    transform: scale(1.14);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(.2,.8,.2,1.4);
+  }
   .box-pop:hover .box-closed { opacity: 0; }
-  .box-pop:hover .box-open { opacity: 1; }
+  .box-pop:hover .box-open { opacity: 1; transform: scale(1.22); }
 
   .box-pop .tool-icon {
     position: absolute;
@@ -523,15 +530,17 @@
     filter: drop-shadow(0 8px 12px rgba(13,32,21,0.22));
   }
   .box-pop:hover .tool-icon { opacity: 1; }
-  .box-pop:hover .ti-1 { transform: scale(1) translate(-34px, -58px) rotate(-14deg); transition-delay: 0.02s; }
-  .box-pop:hover .ti-2 { transform: scale(1) translate(2px, -74px) rotate(5deg); transition-delay: 0.07s; }
-  .box-pop:hover .ti-3 { transform: scale(1) translate(38px, -58px) rotate(15deg); transition-delay: 0.12s; }
-  .box-pop:hover .ti-4 { transform: scale(1) translate(-58px, -14px) rotate(-20deg); transition-delay: 0.05s; }
-  .box-pop:hover .ti-5 { transform: scale(1) translate(58px, -14px) rotate(20deg); transition-delay: 0.1s; }
-  .box-pop:hover .ti-6 { transform: scale(1) translate(0, -98px) rotate(0deg); transition-delay: 0.15s; }
+  .box-pop:hover .ti-1 { transform: scale(1) translate(-83px, -39px) rotate(-18deg); transition-delay: 0.02s; }
+  .box-pop:hover .ti-2 { transform: scale(1) translate(-71px, -87px) rotate(8deg); transition-delay: 0.1s; }
+  .box-pop:hover .ti-3 { transform: scale(1) translate(-19px, -83px) rotate(-22deg); transition-delay: 0.05s; }
+  .box-pop:hover .ti-4 { transform: scale(1) translate(25px, -109px) rotate(16deg); transition-delay: 0.14s; }
+  .box-pop:hover .ti-5 { transform: scale(1) translate(60px, -75px) rotate(-9deg); transition-delay: 0.08s; }
+  .box-pop:hover .ti-6 { transform: scale(1) translate(96px, -45px) rotate(24deg); transition-delay: 0.17s; }
 
   @media (prefers-reduced-motion: reduce) {
-    .box-pop .tool-icon, .box-pop .box-closed, .box-pop .box-open { transition: opacity 0.2s ease; transform: none; }
+    .box-pop .tool-icon, .box-pop .box-closed { transition: opacity 0.2s ease; transform: none; }
+    .box-pop .box-open { transition: opacity 0.2s ease; transform: scale(1.14); }
+    .box-pop:hover .box-open { transform: scale(1.14); }
     .box-pop:hover .ti-1, .box-pop:hover .ti-2, .box-pop:hover .ti-3,
     .box-pop:hover .ti-4, .box-pop:hover .ti-5, .box-pop:hover .ti-6 { transform: none; }
   }
