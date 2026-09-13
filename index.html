@@ -619,7 +619,9 @@
     width: 140px;
     height: 140px;
     flex: none;
+    cursor: pointer;
   }
+  .box-pop:focus-visible { outline: 2px solid var(--pine); outline-offset: 4px; border-radius: 12px; }
   .box-pop img { width: 100%; height: 100%; object-fit: contain; }
   .box-pop .box-closed, .box-pop .box-open {
     position: absolute;
@@ -634,8 +636,12 @@
     transform: scale(1.14);
     transition: opacity 0.3s ease, transform 0.4s cubic-bezier(.2,.8,.2,1.4);
   }
-  .box-pop:hover .box-closed { opacity: 0; }
-  .box-pop:hover .box-open { opacity: 1; transform: scale(1.22); }
+  .box-pop:hover .box-closed,
+  .box-pop.is-open .box-closed,
+  .box-pop:focus-visible .box-closed { opacity: 0; }
+  .box-pop:hover .box-open,
+  .box-pop.is-open .box-open,
+  .box-pop:focus-visible .box-open { opacity: 1; transform: scale(1.22); }
 
   .box-pop .tool-icon {
     position: absolute;
@@ -650,20 +656,54 @@
     pointer-events: none;
     filter: drop-shadow(0 8px 12px rgba(13,32,21,0.22));
   }
-  .box-pop:hover .tool-icon { opacity: 1; }
-  .box-pop:hover .ti-1 { transform: scale(1) translate(-83px, -39px) rotate(-18deg); transition-delay: 0.02s; }
-  .box-pop:hover .ti-2 { transform: scale(1) translate(-71px, -87px) rotate(8deg); transition-delay: 0.1s; }
-  .box-pop:hover .ti-3 { transform: scale(1) translate(-19px, -83px) rotate(-22deg); transition-delay: 0.05s; }
-  .box-pop:hover .ti-4 { transform: scale(1) translate(25px, -109px) rotate(16deg); transition-delay: 0.14s; }
-  .box-pop:hover .ti-5 { transform: scale(1) translate(60px, -75px) rotate(-9deg); transition-delay: 0.08s; }
-  .box-pop:hover .ti-6 { transform: scale(1) translate(96px, -45px) rotate(24deg); transition-delay: 0.17s; }
+  .box-pop:hover .tool-icon,
+  .box-pop.is-open .tool-icon,
+  .box-pop:focus-visible .tool-icon { opacity: 1; }
+  .box-pop:hover .ti-1, .box-pop.is-open .ti-1, .box-pop:focus-visible .ti-1 { transform: scale(1) translate(-83px, -39px) rotate(-18deg); transition-delay: 0.02s; }
+  .box-pop:hover .ti-2, .box-pop.is-open .ti-2, .box-pop:focus-visible .ti-2 { transform: scale(1) translate(-71px, -87px) rotate(8deg); transition-delay: 0.1s; }
+  .box-pop:hover .ti-3, .box-pop.is-open .ti-3, .box-pop:focus-visible .ti-3 { transform: scale(1) translate(-19px, -83px) rotate(-22deg); transition-delay: 0.05s; }
+  .box-pop:hover .ti-4, .box-pop.is-open .ti-4, .box-pop:focus-visible .ti-4 { transform: scale(1) translate(25px, -109px) rotate(16deg); transition-delay: 0.14s; }
+  .box-pop:hover .ti-5, .box-pop.is-open .ti-5, .box-pop:focus-visible .ti-5 { transform: scale(1) translate(60px, -75px) rotate(-9deg); transition-delay: 0.08s; }
+  .box-pop:hover .ti-6, .box-pop.is-open .ti-6, .box-pop:focus-visible .ti-6 { transform: scale(1) translate(96px, -45px) rotate(24deg); transition-delay: 0.17s; }
+
+  .box-hint {
+    display: none;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--coral);
+    color: #fff;
+    font-size: 14px;
+    box-shadow: 0 8px 16px -6px var(--shadow-strong);
+    z-index: 3;
+    animation: box-hint-pulse 1.6s ease-in-out infinite;
+  }
+  @media (max-width: 760px) {
+    .box-hint { display: flex; }
+  }
+  .box-pop.is-open .box-hint,
+  .box-pop.tapped .box-hint { display: none; }
+  @keyframes box-hint-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
 
   @media (prefers-reduced-motion: reduce) {
     .box-pop .tool-icon, .box-pop .box-closed { transition: opacity 0.2s ease; transform: none; }
     .box-pop .box-open { transition: opacity 0.2s ease; transform: scale(1.14); }
-    .box-pop:hover .box-open { transform: scale(1.14); }
+    .box-pop:hover .box-open, .box-pop.is-open .box-open, .box-pop:focus-visible .box-open { transform: scale(1.14); }
     .box-pop:hover .ti-1, .box-pop:hover .ti-2, .box-pop:hover .ti-3,
-    .box-pop:hover .ti-4, .box-pop:hover .ti-5, .box-pop:hover .ti-6 { transform: none; }
+    .box-pop:hover .ti-4, .box-pop:hover .ti-5, .box-pop:hover .ti-6,
+    .box-pop.is-open .ti-1, .box-pop.is-open .ti-2, .box-pop.is-open .ti-3,
+    .box-pop.is-open .ti-4, .box-pop.is-open .ti-5, .box-pop.is-open .ti-6,
+    .box-pop:focus-visible .ti-1, .box-pop:focus-visible .ti-2, .box-pop:focus-visible .ti-3,
+    .box-pop:focus-visible .ti-4, .box-pop:focus-visible .ti-5, .box-pop:focus-visible .ti-6 { transform: none; }
+    .box-hint { animation: none; }
   }
 
   .shelf h2 { font-size: 1.5rem; margin: 8px 0 8px; }
@@ -911,7 +951,7 @@
     <div class="wrap">
       <div class="reveal">
         <div class="shelf">
-          <div class="box-pop">
+          <div class="box-pop" role="button" tabindex="0" aria-pressed="false" aria-label="Ver un adelanto de las próximas herramientas">
             <img class="box-closed" src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino.">
             <img class="box-open" src="img/box-open.png" alt="">
             <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="">
@@ -920,6 +960,7 @@
             <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="">
             <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="">
             <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="">
+            <span class="box-hint" aria-hidden="true">👆</span>
           </div>
           <div>
             <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
@@ -1045,6 +1086,34 @@
   var onDesktopChange = function (e) { if (e.matches) closeMenu(); };
   if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', onDesktopChange);
   else desktopQuery.addListener(onDesktopChange);
+})();
+
+(function () {
+  var boxPop = document.querySelector('.box-pop');
+  if (!boxPop) return;
+
+  function setOpen(open) {
+    boxPop.classList.toggle('is-open', open);
+    boxPop.classList.add('tapped');
+    boxPop.setAttribute('aria-pressed', open ? 'true' : 'false');
+  }
+
+  boxPop.addEventListener('click', function () {
+    setOpen(!boxPop.classList.contains('is-open'));
+  });
+
+  boxPop.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      setOpen(!boxPop.classList.contains('is-open'));
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (boxPop.classList.contains('is-open') && !boxPop.contains(e.target)) {
+      setOpen(false);
+    }
+  });
 })();
 
 (function () {
