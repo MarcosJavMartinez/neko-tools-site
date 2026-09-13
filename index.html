@@ -265,12 +265,65 @@
   .nav-links-mobile-gap { flex: 1; }
 
   @media (max-width: 480px) {
-    .nav-row { flex-wrap: wrap; row-gap: 10px; height: auto; padding: 12px 0; }
-    .nav-cta { flex-basis: 100%; justify-content: flex-end; }
+    .nav-row { padding: 12px 0; }
   }
 
   @media (max-width: 760px) {
     .nav-links a.hide-mobile { display: none; }
+  }
+
+  /* ---------- mobile nav menu ---------- */
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper-raised);
+    color: var(--ink-soft);
+    cursor: pointer;
+    flex: none;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .nav-toggle:hover { border-color: var(--pine); color: var(--pine); }
+  .nav-toggle:focus-visible { outline: 2px solid var(--pine); outline-offset: 2px; }
+  .nav-toggle .icon-close { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-menu { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+  @media (max-width: 760px) {
+    .nav-toggle { display: inline-flex; }
+    .nav-cta-btn { display: none; }
+  }
+
+  .nav-mobile-menu {
+    display: none;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(.2,.8,.2,1);
+  }
+  @media (max-width: 760px) {
+    .nav-mobile-menu { display: grid; }
+  }
+  .nav-mobile-menu.is-open { grid-template-rows: 1fr; border-top: 1px solid var(--line); }
+  .nav-mobile-links {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-mobile-links a {
+    padding: 15px 32px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .nav-mobile-links a:last-child { border-bottom: none; }
+  .nav-mobile-links a:hover { color: var(--pine); background: var(--mint); }
+  .nav-mobile-links a.nav-mobile-cta {
+    color: var(--pine);
+    font-weight: 800;
   }
 
   /* ---------- hero ---------- */
@@ -689,8 +742,20 @@
         <svg class="icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         <svg class="icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
-      <a class="btn btn-primary btn-small" href="https://neko-lista.vercel.app">Abrir Neko Lista</a>
+      <a class="btn btn-primary btn-small nav-cta-btn" href="https://neko-lista.vercel.app">Abrir Neko Lista</a>
+      <button class="nav-toggle" type="button" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobileMenu">
+        <svg class="icon icon-menu" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+        <svg class="icon icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+      </button>
     </div>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <nav class="nav-mobile-links">
+      <a href="https://neko-lista.vercel.app" class="nav-mobile-cta">Abrir Neko Lista</a>
+      <a href="#producto">Neko Lista</a>
+      <a href="#gondola">Próximamente</a>
+      <a href="#marca">Sobre</a>
+    </nav>
   </div>
 </header>
 
@@ -945,6 +1010,41 @@
       try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
     });
   }
+})();
+
+(function () {
+  var navToggle = document.getElementById('navToggle');
+  var navMenu = document.getElementById('navMobileMenu');
+  if (!navToggle || !navMenu) return;
+
+  function closeMenu() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+    navMenu.classList.remove('is-open');
+  }
+
+  navToggle.addEventListener('click', function () {
+    var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    navToggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+    navMenu.classList.toggle('is-open', !isOpen);
+  });
+
+  navMenu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+      navToggle.focus();
+    }
+  });
+
+  var desktopQuery = window.matchMedia('(min-width: 761px)');
+  var onDesktopChange = function (e) { if (e.matches) closeMenu(); };
+  if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', onDesktopChange);
+  else desktopQuery.addListener(onDesktopChange);
 })();
 
 (function () {
