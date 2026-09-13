@@ -669,22 +669,28 @@
   .box-hint {
     display: none;
     position: absolute;
-    top: -6px;
-    right: -6px;
-    width: 28px;
-    height: 28px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: var(--coral);
-    color: #fff;
-    font-size: 14px;
-    box-shadow: 0 8px 16px -6px var(--shadow-strong);
+    top: -10px;
+    right: -10px;
+    width: 34px;
+    height: 34px;
     z-index: 3;
+    pointer-events: none;
     animation: box-hint-pulse 1.6s ease-in-out infinite;
   }
+  .box-hint::before, .box-hint::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 1px rgba(13, 32, 21, 0.18), 0 4px 10px -4px rgba(13, 32, 21, 0.4);
+  }
+  .box-hint::after {
+    inset: 9px;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
   @media (max-width: 760px) {
-    .box-hint { display: flex; }
+    .box-hint { display: block; }
   }
   .box-pop.is-open .box-hint,
   .box-pop.tapped .box-hint { display: none; }
@@ -960,7 +966,7 @@
             <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="">
             <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="">
             <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="">
-            <span class="box-hint" aria-hidden="true">👆</span>
+            <span class="box-hint" aria-hidden="true"></span>
           </div>
           <div>
             <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
