@@ -776,6 +776,73 @@
   .final-cta p { color: var(--ink-soft); margin: 0 0 30px; }
   .final-cta .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
+  /* ---------- about / contact ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .about-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 10px 0 14px; }
+  .about-copy p { color: var(--ink-soft); font-size: 1.05rem; max-width: 46ch; margin: 0 0 20px; }
+  .about-signature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+  }
+  .about-signature img {
+    width: 44px; height: 44px; border-radius: 12px;
+    box-shadow: 0 10px 20px -12px var(--shadow-strong);
+  }
+  .about-signature .name { font-weight: 700; font-size: 0.95rem; }
+  .about-signature .role { font-size: 0.85rem; color: var(--ink-faint); }
+
+  .contact-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 30px 60px -34px var(--shadow-strong);
+  }
+  .contact-card h3 { font-size: 1.1rem; margin: 0 0 6px; }
+  .contact-card > p { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 22px; }
+  .form-row { margin-bottom: 16px; }
+  .form-row label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .form-row input, .form-row textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 11px 14px;
+    resize: vertical;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .form-row input:focus, .form-row textarea:focus {
+    outline: none;
+    border-color: var(--pine);
+    box-shadow: 0 0 0 3px var(--mint);
+  }
+  .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .contact-card .btn { width: 100%; }
+  .form-status {
+    margin: 14px 0 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    min-height: 1.2em;
+  }
+  .form-status.is-ok { color: var(--pine); }
+  .form-status.is-error { color: var(--coral); }
+
   /* ---------- footer ---------- */
   footer { padding: 40px 0 44px; border-top: 1px solid var(--line); }
   .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
@@ -1039,9 +1106,57 @@
       </div>
     </div>
   </section>
+
+  <section class="band-sunken" id="marca">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal reveal-left">
+        <span class="kicker">Quiénes somos</span>
+        <h2>Un desarrollador, no una empresa.</h2>
+        <p>Neko Tools lo armo y lo mantengo yo solo. Programo cosas que primero necesito yo: Neko Lista nació porque no encontraba una lista de compras simple, sin cuenta ni anuncios, que hiciera bien una sola cosa.</p>
+        <p>Si encontraste un bug, te falta una función, o simplemente querés contarme qué te parece la app, escribime — leo todos los mensajes.</p>
+        <div class="about-signature">
+          <img src="img/logo-header.png" alt="">
+          <div>
+            <div class="name">Marcos Martínez</div>
+            <div class="role">Desarrollador de Neko Tools · Argentina</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-right" style="--reveal-delay:0.1s">
+        <form class="contact-card" id="contactForm" novalidate>
+          <h3>Mandame un mensaje</h3>
+          <p>Te respondo por mail, normalmente en un día o dos.</p>
+
+          <div class="form-row">
+            <label for="cf-name">Nombre</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="form-row">
+            <label for="cf-email">Tu email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="160">
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" name="message" rows="4" required maxlength="4000"></textarea>
+          </div>
+          <div class="hp-field">
+            <label for="cf-website">Sitio web</label>
+            <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Enviar mensaje
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer id="marca">
+<footer>
   <div class="wrap foot-row">
     <div>
       <div class="foot-brand">
@@ -1183,6 +1298,43 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
 
   items.forEach(function (el) { io.observe(el); });
+})();
+
+(function () {
+  var form = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    status.textContent = 'Enviando…';
+    status.className = 'form-status';
+
+    fetch('contact.php', {
+      method: 'POST',
+      body: new FormData(form),
+    })
+      .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
+      .then(function (result) {
+        if (result.ok && result.data && result.data.ok) {
+          status.textContent = '¡Gracias! Te voy a responder por mail.';
+          status.className = 'form-status is-ok';
+          form.reset();
+        } else {
+          status.textContent = 'No se pudo enviar. Probá de nuevo o escribime directo por Ko-fi.';
+          status.className = 'form-status is-error';
+        }
+      })
+      .catch(function () {
+        status.textContent = 'No se pudo enviar. Probá de nuevo o escribime directo por Ko-fi.';
+        status.className = 'form-status is-error';
+      })
+      .finally(function () {
+        btn.disabled = false;
+      });
+  });
 })();
 </script>
 </body>
