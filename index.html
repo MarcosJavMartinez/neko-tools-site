@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="i18n.js"></script>
 <title>Neko Lista — la lista del súper gratis | Neko Tools</title>
 <meta name="description" content="Neko Lista: la lista del súper que sabe contar. Gratis, sin cuenta, instalable. La primera herramienta de Neko Tools." />
 <meta name="robots" content="index, follow" />
@@ -876,6 +877,44 @@
     :root:not([data-theme="light"]) .theme-toggle svg.icon-sun { display: none; }
     :root:not([data-theme="light"]) .theme-toggle svg.icon-moon { display: block; }
   }
+
+  /* ---------- language picker ---------- */
+  .lang-wrap { position: relative; }
+  .lang-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: 190px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 24px 48px -20px var(--shadow-strong);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 2px;
+    z-index: 50;
+  }
+  .lang-panel.is-open { display: flex; }
+  .lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+  }
+  .lang-option:hover { background: var(--mint); }
+  .lang-option.is-active { background: var(--mint); color: var(--pine-deep); }
+  .lang-option .flag { font-size: 1.05rem; line-height: 1; }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -888,17 +927,23 @@
       Neko Tools
     </a>
     <nav class="nav-links">
-      <a href="#producto" class="hide-mobile">Neko Lista</a>
-      <a href="#gondola" class="hide-mobile">Próximamente</a>
-      <a href="#marca" class="hide-mobile">Sobre</a>
+      <a href="#producto" class="hide-mobile" data-i18n="nav_neko_lista">Neko Lista</a>
+      <a href="#gondola" class="hide-mobile" data-i18n="nav_proximamente">Próximamente</a>
+      <a href="#marca" class="hide-mobile" data-i18n="nav_sobre">Sobre</a>
     </nav>
     <div class="nav-cta">
-      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Cambiar a modo oscuro">
+      <div class="lang-wrap">
+        <button class="theme-toggle" type="button" id="langToggle" aria-haspopup="true" aria-expanded="false" aria-controls="langPanel" data-i18n-aria-label="lang_toggle_aria" aria-label="Cambiar idioma">
+          <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+        <div class="lang-panel" id="langPanel" role="menu"></div>
+      </div>
+      <button class="theme-toggle" type="button" id="themeToggle" data-i18n-aria-label="theme_to_dark_aria" aria-label="Cambiar a modo oscuro">
         <svg class="icon icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
         <svg class="icon icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       </button>
-      <a class="btn btn-primary btn-small nav-cta-btn" href="https://neko-lista.vercel.app">Abrir Neko Lista</a>
-      <button class="nav-toggle" type="button" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobileMenu">
+      <a class="btn btn-primary btn-small nav-cta-btn" href="https://neko-lista.vercel.app" data-i18n="nav_abrir">Abrir Neko Lista</a>
+      <button class="nav-toggle" type="button" id="navToggle" data-i18n-aria-label="nav_toggle_open_aria" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobileMenu">
         <svg class="icon icon-menu" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
         <svg class="icon icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
       </button>
@@ -906,10 +951,10 @@
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu">
     <nav class="nav-mobile-links">
-      <a href="https://neko-lista.vercel.app" class="nav-mobile-cta">Abrir Neko Lista</a>
-      <a href="#producto">Neko Lista</a>
-      <a href="#gondola">Próximamente</a>
-      <a href="#marca">Sobre</a>
+      <a href="https://neko-lista.vercel.app" class="nav-mobile-cta" data-i18n="nav_abrir">Abrir Neko Lista</a>
+      <a href="#producto" data-i18n="nav_neko_lista">Neko Lista</a>
+      <a href="#gondola" data-i18n="nav_proximamente">Próximamente</a>
+      <a href="#marca" data-i18n="nav_sobre">Sobre</a>
     </nav>
   </div>
 </header>
@@ -918,20 +963,20 @@
   <section class="hero" id="producto">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="kicker">Neko Lista · lista de compras</span>
-        <h1>La lista del súper que <em>sabe contar</em>.</h1>
-        <p class="lede">Cantidades, precios y el total de tu compra, actualizados en el momento. Sin cuenta, sin anuncios, sin vueltas.</p>
+        <span class="kicker" data-i18n="hero_kicker">Neko Lista · lista de compras</span>
+        <h1 data-i18n-html="hero_h1">La lista del súper que <em>sabe contar</em>.</h1>
+        <p class="lede" data-i18n="hero_lede">Cantidades, precios y el total de tu compra, actualizados en el momento. Sin cuenta, sin anuncios, sin vueltas.</p>
         <div class="hero-tags">
-          <span class="tag">Gratis</span>
-          <span class="tag">Sin cuenta</span>
-          <span class="tag">Instalable</span>
+          <span class="tag" data-i18n="tag_gratis">Gratis</span>
+          <span class="tag" data-i18n="tag_sin_cuenta">Sin cuenta</span>
+          <span class="tag" data-i18n="tag_instalable">Instalable</span>
         </div>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="https://neko-lista.vercel.app">
-            Abrir Neko Lista
+            <span data-i18n="nav_abrir">Abrir Neko Lista</span>
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <a class="btn btn-ghost" href="#features">Ver funciones</a>
+          <a class="btn btn-ghost" href="#features" data-i18n="hero_cta_ver_funciones">Ver funciones</a>
         </div>
       </div>
 
@@ -942,12 +987,12 @@
           <span class="ic">
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg>
           </span>
-          <div class="tx"><div class="k">Se actualiza</div><div class="v">al instante</div></div>
+          <div class="tx"><div class="k" data-i18n="float1_k">Se actualiza</div><div class="v" data-i18n="float1_v">al instante</div></div>
         </div>
 
         <div class="device">
           <div class="device-screen">
-            <img src="img/screenshot-lista.png" alt="Captura real de Neko Lista: lista de compras con Leche, Pan, Huevos, Tomate, Banana, Pollo, Arroz y Papel higiénico, total $18.900." fetchpriority="high">
+            <img src="img/screenshot-lista.png" data-i18n-alt="hero_screenshot_alt" alt="Captura real de Neko Lista: lista de compras con Leche, Pan, Huevos, Tomate, Banana, Pollo, Arroz y Papel higiénico, total $18.900." fetchpriority="high">
           </div>
         </div>
 
@@ -955,7 +1000,7 @@
           <span class="ic">
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M5 12l5-5M5 12l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </span>
-          <div class="tx"><div class="k">Menos pensar</div><div class="v">más tiempo para vos</div></div>
+          <div class="tx"><div class="k" data-i18n="float2_k">Menos pensar</div><div class="v" data-i18n="float2_v">más tiempo para vos</div></div>
         </div>
       </div>
     </div>
@@ -964,9 +1009,9 @@
   <section id="features">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="kicker">Por qué se siente distinta</span>
-        <h2>Tres detalles que la gente nota apenas la abre.</h2>
-        <p>Nada de fricción: abrís, agregás, comprás.</p>
+        <span class="kicker" data-i18n="features_kicker">Por qué se siente distinta</span>
+        <h2 data-i18n="features_h2">Tres detalles que la gente nota apenas la abre.</h2>
+        <p data-i18n="features_lede">Nada de fricción: abrís, agregás, comprás.</p>
       </div>
       <div class="feature-grid">
         <div class="reveal" style="--reveal-delay:0s">
@@ -974,8 +1019,8 @@
             <span class="ic">
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="3" stroke="currentColor" stroke-width="2"/><path d="M8 8h8M8 12h3M13 12h3M8 16h3M13 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </span>
-            <h3>Calcula el total en tiempo real</h3>
-            <p>Ves cuánto llevás gastado al instante, sin sacar la calculadora.</p>
+            <h3 data-i18n="feat1_h3">Calcula el total en tiempo real</h3>
+            <p data-i18n="feat1_p">Ves cuánto llevás gastado al instante, sin sacar la calculadora.</p>
           </div>
         </div>
         <div class="reveal" style="--reveal-delay:0.1s">
@@ -983,8 +1028,8 @@
             <span class="ic">
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
             </span>
-            <h3>Lista simple y rápida</h3>
-            <p>Agregá, editá y tachá productos en segundos, con una mano libre.</p>
+            <h3 data-i18n="feat2_h3">Lista simple y rápida</h3>
+            <p data-i18n="feat2_p">Agregá, editá y tachá productos en segundos, con una mano libre.</p>
           </div>
         </div>
         <div class="reveal" style="--reveal-delay:0.2s">
@@ -992,8 +1037,8 @@
             <span class="ic">
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/></svg>
             </span>
-            <h3>Diseño claro para comprar mejor</h3>
-            <p>Todo bien ordenado, sin enredos ni pasos de más.</p>
+            <h3 data-i18n="feat3_h3">Diseño claro para comprar mejor</h3>
+            <p data-i18n="feat3_p">Todo bien ordenado, sin enredos ni pasos de más.</p>
           </div>
         </div>
       </div>
@@ -1003,16 +1048,16 @@
   <section class="band-sunken" id="recibo">
     <div class="wrap receipt-wrap">
       <div class="reveal reveal-left">
-        <span class="kicker">Gasto, línea por línea</span>
-        <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;">Todo lo que llevás, línea por línea.</h2>
-        <p style="color:var(--ink-soft); font-size:1.05rem; max-width:44ch;">Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.</p>
+        <span class="kicker" data-i18n="receipt_kicker">Gasto, línea por línea</span>
+        <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;" data-i18n="receipt_h2">Todo lo que llevás, línea por línea.</h2>
+        <p style="color:var(--ink-soft); font-size:1.05rem; max-width:44ch;" data-i18n="receipt_lede">Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.</p>
       </div>
       <div class="reveal reveal-right" style="--reveal-delay:0.1s">
         <div class="receipt">
           <div class="receipt-cut top"></div>
           <div class="receipt-head">
             <div class="name">Neko Lista</div>
-            <div class="sub">TICKET · LISTA ACTUAL</div>
+            <div class="sub" data-i18n="receipt_sub">TICKET · LISTA ACTUAL</div>
           </div>
           <div class="receipt-line"><span class="n">Leche <span class="q">×2</span></span><span class="p">$2.400</span></div>
           <div class="receipt-line"><span class="n">Pan</span><span class="p">$1.200</span></div>
@@ -1022,7 +1067,7 @@
           <div class="receipt-line"><span class="n">Pollo <span class="q">1 kg</span></span><span class="p">$4.200</span></div>
           <div class="receipt-line"><span class="n">Arroz</span><span class="p">$1.900</span></div>
           <div class="receipt-line" style="border-bottom:none;"><span class="n">Papel higiénico</span><span class="p">$3.100</span></div>
-          <div class="receipt-total"><span class="l">Total</span><span class="v">$17.900</span></div>
+          <div class="receipt-total"><span class="l" data-i18n="receipt_total">Total</span><span class="v">$17.900</span></div>
           <div class="receipt-cut bottom"></div>
         </div>
       </div>
@@ -1032,31 +1077,31 @@
   <section id="galeria">
     <div class="wrap">
       <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
-        <span class="kicker">Así se ve, sin maquillaje</span>
-        <h2>Capturas reales de la app.</h2>
-        <p>Tres pantallas, tres momentos de la compra.</p>
+        <span class="kicker" data-i18n="gallery_kicker">Así se ve, sin maquillaje</span>
+        <h2 data-i18n="gallery_h2">Capturas reales de la app.</h2>
+        <p data-i18n="gallery_lede">Tres pantallas, tres momentos de la compra.</p>
       </div>
       <div class="gallery-grid">
         <div class="gallery-card reveal" style="--reveal-delay:0s">
           <div class="gallery-frame">
-            <img src="img/screenshot-lista.png" alt="Captura real de la lista de compras con productos, cantidades y precios." loading="lazy" decoding="async">
+            <img src="img/screenshot-lista.png" data-i18n-alt="gal1_alt" alt="Captura real de la lista de compras con productos, cantidades y precios." loading="lazy" decoding="async">
           </div>
-          <h3>Tu lista</h3>
-          <p>Todo lo que necesitás, siempre a mano.</p>
+          <h3 data-i18n="gal1_h3">Tu lista</h3>
+          <p data-i18n="gal1_p">Todo lo que necesitás, siempre a mano.</p>
         </div>
         <div class="gallery-card reveal" style="--reveal-delay:0.1s">
           <div class="gallery-frame">
-            <img src="img/screenshot-agregar.png" alt="Captura real del formulario para agregar un producto: nombre, cantidad y precio." loading="lazy" decoding="async">
+            <img src="img/screenshot-agregar.png" data-i18n-alt="gal2_alt" alt="Captura real del formulario para agregar un producto: nombre, cantidad y precio." loading="lazy" decoding="async">
           </div>
-          <h3>Agregá en segundos</h3>
-          <p>Nombre, cantidad y precio. Nada más.</p>
+          <h3 data-i18n="gal2_h3">Agregá en segundos</h3>
+          <p data-i18n="gal2_p">Nombre, cantidad y precio. Nada más.</p>
         </div>
         <div class="gallery-card reveal" style="--reveal-delay:0.2s">
           <div class="gallery-frame">
-            <img src="img/screenshot-iconos.png" alt="Captura real del selector de íconos de producto." loading="lazy" decoding="async">
+            <img src="img/screenshot-iconos.png" data-i18n-alt="gal3_alt" alt="Captura real del selector de íconos de producto." loading="lazy" decoding="async">
           </div>
-          <h3>Tus íconos</h3>
-          <p>Personalizá tu lista a tu manera.</p>
+          <h3 data-i18n="gal3_h3">Tus íconos</h3>
+          <p data-i18n="gal3_p">Personalizá tu lista a tu manera.</p>
         </div>
       </div>
     </div>
@@ -1066,8 +1111,8 @@
     <div class="wrap">
       <div class="reveal">
         <div class="shelf">
-          <div class="box-pop" role="button" tabindex="0" aria-pressed="false" aria-label="Ver un adelanto de las próximas herramientas">
-            <img class="box-closed" src="img/box-illustration.png" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino." loading="lazy" decoding="async">
+          <div class="box-pop" role="button" tabindex="0" aria-pressed="false" data-i18n-aria-label="box_aria" aria-label="Ver un adelanto de las próximas herramientas">
+            <img class="box-closed" src="img/box-illustration.png" data-i18n-alt="box_closed_alt" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino." loading="lazy" decoding="async">
             <img class="box-open" src="img/box-open.png" alt="" loading="lazy" decoding="async">
             <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="" loading="lazy" decoding="async">
             <img class="tool-icon ti-2" src="img/tool-icon-2.png" alt="" loading="lazy" decoding="async">
@@ -1078,11 +1123,12 @@
             <span class="box-hint" aria-hidden="true"></span>
           </div>
           <div>
-            <span class="shelf-slot"><span class="dot"></span>Más herramientas, pronto</span>
-            <h2>Neko Lista es la primera. No la única.</h2>
-            <p>Estamos creando herramientas simples para la vida real, bajo un mismo techo: Neko Tools.</p>
+            <span class="shelf-slot"><span class="dot"></span><span data-i18n="gondola_slot">Más herramientas, pronto</span></span>
+            <h2 data-i18n="gondola_h2">Neko Lista es la primera. No la única.</h2>
+            <p data-i18n="gondola_p">Estamos creando herramientas simples para la vida real, bajo un mismo techo: Neko Tools.</p>
             <div class="shelf-actions">
-              <a class="btn btn-ghost btn-small" href="#marca">Conocer Neko Tools
+              <a class="btn btn-ghost btn-small" href="#marca">
+                <span data-i18n="gondola_cta">Conocer Neko Tools</span>
                 <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -1094,14 +1140,14 @@
 
   <section class="final-cta">
     <div class="wrap reveal">
-      <img src="img/mascot-illustration.png" alt="El gato de Neko Tools caminando y sonriendo, con una bolsa de compras llena de verduras, pan y leche." loading="lazy" decoding="async">
-      <h2>¿Listo para una compra más simple?</h2>
-      <p>Neko Lista te acompaña, del changuito al total.</p>
+      <img src="img/mascot-illustration.png" data-i18n-alt="final_mascot_alt" alt="El gato de Neko Tools caminando y sonriendo, con una bolsa de compras llena de verduras, pan y leche." loading="lazy" decoding="async">
+      <h2 data-i18n="final_h2">¿Listo para una compra más simple?</h2>
+      <p data-i18n="final_p">Neko Lista te acompaña, del changuito al total.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="https://neko-lista.vercel.app">Abrir Neko Lista</a>
+        <a class="btn btn-primary" href="https://neko-lista.vercel.app" data-i18n="nav_abrir">Abrir Neko Lista</a>
         <a class="btn btn-ghost" href="https://ko-fi.com/nekotools">
           <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-9.5-9C1 8 2.3 4.8 5.5 4.2 7.7 3.8 10 5 12 7c2-2 4.3-3.2 6.5-2.8C21.7 4.8 23 8 21.5 11c-2.5 4.6-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          Apoyar
+          <span data-i18n="final_apoyar">Apoyar</span>
         </a>
       </div>
     </div>
@@ -1110,34 +1156,34 @@
   <section class="band-sunken" id="marca">
     <div class="wrap about-grid">
       <div class="about-copy reveal reveal-left">
-        <span class="kicker">Quiénes somos</span>
-        <h2>Un desarrollador, no una empresa.</h2>
-        <p>Neko Tools lo armo y lo mantengo yo solo. Programo cosas que primero necesito yo: Neko Lista nació porque no encontraba una lista de compras simple, sin cuenta ni anuncios, que hiciera bien una sola cosa.</p>
-        <p>Si encontraste un bug, te falta una función, o simplemente querés contarme qué te parece la app, escribime — leo todos los mensajes.</p>
+        <span class="kicker" data-i18n="about_kicker">Quiénes somos</span>
+        <h2 data-i18n="about_h2">Un desarrollador, no una empresa.</h2>
+        <p data-i18n="about_p1">Neko Tools lo armo y lo mantengo yo solo. Programo cosas que primero necesito yo: Neko Lista nació porque no encontraba una lista de compras simple, sin cuenta ni anuncios, que hiciera bien una sola cosa.</p>
+        <p data-i18n="about_p2">Si encontraste un bug, te falta una función, o simplemente querés contarme qué te parece la app, escribime — leo todos los mensajes.</p>
         <div class="about-signature">
           <img src="img/logo-header.png" alt="">
           <div>
             <div class="name">Marcos Martínez</div>
-            <div class="role">Desarrollador de Neko Tools · Argentina</div>
+            <div class="role" data-i18n="about_role">Desarrollador de Neko Tools · Argentina</div>
           </div>
         </div>
       </div>
 
       <div class="reveal reveal-right" style="--reveal-delay:0.1s">
         <form class="contact-card" id="contactForm" novalidate>
-          <h3>Mandame un mensaje</h3>
-          <p>Te respondo por mail, normalmente en un día o dos.</p>
+          <h3 data-i18n="contact_h3">Mandame un mensaje</h3>
+          <p data-i18n="contact_lede">Te respondo por mail, normalmente en un día o dos.</p>
 
           <div class="form-row">
-            <label for="cf-name">Nombre</label>
+            <label for="cf-name" data-i18n="contact_label_name">Nombre</label>
             <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120">
           </div>
           <div class="form-row">
-            <label for="cf-email">Tu email</label>
+            <label for="cf-email" data-i18n="contact_label_email">Tu email</label>
             <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="160">
           </div>
           <div class="form-row">
-            <label for="cf-message">Mensaje</label>
+            <label for="cf-message" data-i18n="contact_label_message">Mensaje</label>
             <textarea id="cf-message" name="message" rows="4" required maxlength="4000"></textarea>
           </div>
           <div class="hp-field">
@@ -1146,7 +1192,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary">
-            Enviar mensaje
+            <span data-i18n="contact_submit">Enviar mensaje</span>
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
@@ -1163,12 +1209,12 @@
         <img src="img/logo-header.png" alt="">
         Neko Tools
       </div>
-      <p class="fine" style="margin-top:8px;">Herramientas simples para la vida real. Hecho con 💚 en Argentina.</p>
+      <p class="fine" style="margin-top:8px;" data-i18n="footer_tagline">Herramientas simples para la vida real. Hecho con 💚 en Argentina.</p>
     </div>
     <nav class="links">
-      <a href="#producto">Neko Lista</a>
-      <a href="#gondola">Próximamente</a>
-      <a href="https://ko-fi.com/nekotools">Apoyar</a>
+      <a href="#producto" data-i18n="nav_neko_lista">Neko Lista</a>
+      <a href="#gondola" data-i18n="nav_proximamente">Próximamente</a>
+      <a href="https://ko-fi.com/nekotools" data-i18n="final_apoyar">Apoyar</a>
     </nav>
   </div>
 </footer>
@@ -1192,7 +1238,7 @@
   function apply(theme) {
     root.setAttribute('data-theme', theme);
     if (toggle) {
-      toggle.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a modo día' : 'Cambiar a modo oscuro');
+      toggle.setAttribute('aria-label', theme === 'dark' ? t('theme_to_light_aria') : t('theme_to_dark_aria'));
     }
   }
 
@@ -1223,14 +1269,14 @@
 
   function closeMenu() {
     navToggle.setAttribute('aria-expanded', 'false');
-    navToggle.setAttribute('aria-label', 'Abrir menú');
+    navToggle.setAttribute('aria-label', t('nav_toggle_open_aria'));
     navMenu.classList.remove('is-open');
   }
 
   navToggle.addEventListener('click', function () {
     var isOpen = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-    navToggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+    navToggle.setAttribute('aria-label', isOpen ? t('nav_toggle_open_aria') : t('nav_toggle_close_aria'));
     navMenu.classList.toggle('is-open', !isOpen);
   });
 
@@ -1309,7 +1355,7 @@
     e.preventDefault();
     var btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
-    status.textContent = 'Enviando…';
+    status.textContent = t('contact_status_sending');
     status.className = 'form-status';
 
     fetch('contact.php', {
@@ -1319,16 +1365,16 @@
       .then(function (res) { return res.json().then(function (data) { return { ok: res.ok, data: data }; }); })
       .then(function (result) {
         if (result.ok && result.data && result.data.ok) {
-          status.textContent = '¡Gracias! Te voy a responder por mail.';
+          status.textContent = t('contact_status_ok');
           status.className = 'form-status is-ok';
           form.reset();
         } else {
-          status.textContent = 'No se pudo enviar. Probá de nuevo o escribime directo por Ko-fi.';
+          status.textContent = t('contact_status_error');
           status.className = 'form-status is-error';
         }
       })
       .catch(function () {
-        status.textContent = 'No se pudo enviar. Probá de nuevo o escribime directo por Ko-fi.';
+        status.textContent = t('contact_status_error');
         status.className = 'form-status is-error';
       })
       .finally(function () {
@@ -1336,6 +1382,59 @@
       });
   });
 })();
+
+(function () {
+  var toggle = document.getElementById('langToggle');
+  var panel = document.getElementById('langPanel');
+  if (!toggle || !panel) return;
+
+  function renderOptions() {
+    panel.innerHTML = '';
+    LANGUAGES.forEach(function (lang) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'lang-option' + (lang.code === currentLang ? ' is-active' : '');
+      btn.setAttribute('role', 'menuitemradio');
+      btn.setAttribute('aria-checked', lang.code === currentLang ? 'true' : 'false');
+      btn.innerHTML = '<span class="flag">' + lang.flag + '</span><span>' + lang.nativeName + '</span>';
+      btn.addEventListener('click', function () {
+        setLang(lang.code);
+        renderOptions();
+        closePanel();
+      });
+      panel.appendChild(btn);
+    });
+  }
+
+  function openPanel() {
+    panel.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+  function closePanel() {
+    panel.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  toggle.addEventListener('click', function () {
+    var isOpen = panel.classList.contains('is-open');
+    if (isOpen) { closePanel(); } else { renderOptions(); openPanel(); }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (panel.classList.contains('is-open') && !panel.contains(e.target) && e.target !== toggle && !toggle.contains(e.target)) {
+      closePanel();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+      closePanel();
+      toggle.focus();
+    }
+  });
+})();
+
+applyStaticTranslations();
 </script>
 </body>
 </html>
