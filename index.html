@@ -476,6 +476,7 @@
 
   .float-card {
     position: absolute;
+    z-index: 2;
     background: var(--paper-raised);
     border: 1px solid var(--line);
     border-radius: 16px;
@@ -485,7 +486,7 @@
     align-items: center;
     gap: 10px;
   }
-  .float-card.fc-1 { top: -78px; left: -20px; }
+  .float-card.fc-1 { top: -38px; left: 10px; }
   .float-card.fc-2 { bottom: -78px; right: -20px; }
   .float-card {
     transition: transform 0.25s cubic-bezier(.2,.8,.2,1.2), box-shadow 0.25s ease;
