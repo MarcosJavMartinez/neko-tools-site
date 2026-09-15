@@ -273,6 +273,7 @@
     backdrop-filter: saturate(160%) blur(14px);
     -webkit-backdrop-filter: saturate(160%) blur(14px);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 8px 24px -12px var(--shadow-strong);
   }
   .nav-row {
     display: flex;
@@ -535,7 +536,11 @@
 
   /* ---------- section shell ---------- */
   section { padding: 96px 0; }
-  section.band-sunken { background: #146c3a; position: relative; }
+  section.band-sunken {
+    background: color-mix(in srgb, #146c3a 94%, transparent);
+    position: relative;
+    box-shadow: 0 24px 40px -24px var(--shadow-strong), 0 -24px 40px -24px var(--shadow-strong);
+  }
 
   .wave {
     position: absolute;
