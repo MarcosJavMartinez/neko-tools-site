@@ -535,7 +535,19 @@
 
   /* ---------- section shell ---------- */
   section { padding: 96px 0; }
-  section.band-sunken { background: #146c3a; }
+  section.band-sunken { background: #146c3a; position: relative; }
+
+  .wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 56px;
+    line-height: 0;
+    pointer-events: none;
+  }
+  .wave svg { display: block; width: 100%; height: 100%; }
+  .wave-top { top: -1px; transform: scaleY(-1); }
+  .wave-bottom { bottom: -1px; }
 
   /* Dentro de las secciones verdes, el recibo y el formulario de contacto
      tienen su propia tarjeta blanca -- esto solo toca el texto que queda
@@ -1077,6 +1089,8 @@
   </section>
 
   <section class="band-sunken" id="recibo">
+    <div class="wave wave-top" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wave wave-bottom" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
     <div class="wrap receipt-wrap">
       <div class="receipt-copy reveal reveal-left">
         <span class="kicker" data-i18n="receipt_kicker">Gasto, línea por línea</span>
@@ -1139,6 +1153,8 @@
   </section>
 
   <section class="band-sunken" id="gondola">
+    <div class="wave wave-top" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wave wave-bottom" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
     <div class="wrap">
       <div class="reveal">
         <div class="shelf">
@@ -1185,6 +1201,8 @@
   </section>
 
   <section class="band-sunken" id="marca">
+    <div class="wave wave-top" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wave wave-bottom" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
     <div class="wrap about-grid">
       <div class="about-copy reveal reveal-left">
         <span class="kicker" data-i18n="about_kicker">Quiénes somos</span>
