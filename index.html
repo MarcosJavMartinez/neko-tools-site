@@ -536,6 +536,30 @@
   /* ---------- section shell ---------- */
   section { padding: 96px 0; }
   section.band-sunken { background: #146c3a; }
+
+  /* Dentro de las secciones verdes, el recibo y el formulario de contacto
+     tienen su propia tarjeta blanca -- esto solo toca el texto que queda
+     directo sobre el verde (sin tarjeta debajo), para que se siga leyendo. */
+  .band-sunken .receipt-copy .kicker,
+  .band-sunken .about-copy .kicker {
+    color: #a8e8c0;
+  }
+  .band-sunken .receipt-copy .kicker::before,
+  .band-sunken .about-copy .kicker::before {
+    background: #a8e8c0;
+  }
+  .band-sunken .receipt-copy h2,
+  .band-sunken .about-copy h2,
+  .band-sunken .about-signature .name {
+    color: #fff;
+  }
+  .band-sunken .receipt-copy p,
+  .band-sunken .about-copy p {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .band-sunken .about-signature .role {
+    color: rgba(255, 255, 255, 0.65);
+  }
   .section-head { max-width: 640px; margin: 0 0 52px; }
   .section-head h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 10px 0 12px; }
   .section-head p { color: var(--ink-soft); font-size: 1.05rem; margin: 0; }
@@ -1054,10 +1078,10 @@
 
   <section class="band-sunken" id="recibo">
     <div class="wrap receipt-wrap">
-      <div class="reveal reveal-left">
+      <div class="receipt-copy reveal reveal-left">
         <span class="kicker" data-i18n="receipt_kicker">Gasto, línea por línea</span>
         <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;" data-i18n="receipt_h2">Todo lo que llevás, línea por línea.</h2>
-        <p style="color:var(--ink-soft); font-size:1.05rem; max-width:44ch;" data-i18n="receipt_lede">Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.</p>
+        <p style="font-size:1.05rem; max-width:44ch;" data-i18n="receipt_lede">Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.</p>
       </div>
       <div class="reveal reveal-right" style="--reveal-delay:0.1s">
         <div class="receipt">
