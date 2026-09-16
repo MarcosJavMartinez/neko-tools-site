@@ -695,12 +695,26 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    background: color-mix(in srgb, var(--paper-raised) 68%, transparent);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 26px;
     padding: 44px 48px;
+    position: relative;
     transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, border-color 0.25s ease;
   }
+  .shelf::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 26px;
+    background-image: var(--bg-texture);
+    background-size: 560px 560px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.6;
+  }
+  .shelf > * { position: relative; z-index: 1; }
   .shelf:hover {
     transform: translateY(-4px);
     border-color: var(--mint-line);
