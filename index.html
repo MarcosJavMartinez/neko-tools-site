@@ -92,8 +92,8 @@
 
     /* ---------- structure ---------- */
     --line:   #dde3d4;
-    --shadow: rgba(13, 32, 21, 0.16);
-    --shadow-strong: rgba(13, 32, 21, 0.32);
+    --shadow: rgba(13, 32, 21, 0.24);
+    --shadow-strong: rgba(13, 32, 21, 0.45);
 
     /* ---------- type ---------- */
     --font-display: "Instrument Sans", "Segoe UI", sans-serif;
@@ -846,7 +846,7 @@
     top: 6%;
     width: 190px;
     height: 220px;
-    background: radial-gradient(ellipse at center, var(--shadow) 0%, transparent 68%);
+    background: radial-gradient(ellipse at center, var(--shadow-strong) 0%, transparent 62%);
     transform: translateX(-50%);
     pointer-events: none;
   }
@@ -857,7 +857,7 @@
     bottom: 4px;
     width: 110px;
     height: 22px;
-    background: radial-gradient(ellipse at center, var(--shadow-strong) 0%, transparent 72%);
+    background: radial-gradient(ellipse at center, var(--shadow-strong) 0%, var(--shadow-strong) 30%, transparent 68%);
     border-radius: 50%;
     transform: translateX(-50%) scale(1);
     transition: transform 0.35s cubic-bezier(.2,.8,.2,1.3);
