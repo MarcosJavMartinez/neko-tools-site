@@ -672,6 +672,7 @@
     box-shadow: 0 30px 60px -30px var(--shadow-strong), 0 10px 20px -12px var(--shadow-strong);
     margin: 0 auto 20px;
     max-width: 300px;
+    height: 440px;
     overflow: hidden;
     line-height: 0;
     transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease;
@@ -683,7 +684,9 @@
   .gallery-frame img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
     transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
   }
   .gallery-card:hover .gallery-frame img { transform: scale(1.06); }
