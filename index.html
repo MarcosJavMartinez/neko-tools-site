@@ -695,7 +695,7 @@
     display: flex;
     align-items: center;
     gap: 40px;
-    background: color-mix(in srgb, var(--paper-raised) 88%, transparent);
+    background: color-mix(in srgb, var(--paper-raised) 68%, transparent);
     border: 1px solid var(--line);
     border-radius: 26px;
     padding: 44px 48px;
@@ -819,12 +819,30 @@
 
   /* ---------- final cta ---------- */
   .final-cta { text-align: center; }
-  .final-cta img {
-    width: 200px; height: 200px; object-fit: contain; margin: 0 auto 8px; display: block;
-    filter: drop-shadow(0 24px 30px var(--shadow-strong));
-    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.3), filter 0.3s ease;
+  .mascot-jump {
+    position: relative;
+    width: 200px;
+    margin: 0 auto 8px;
   }
-  .final-cta img:hover { transform: translateY(-6px) rotate(-2deg); }
+  .mascot-jump::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 110px;
+    height: 22px;
+    background: radial-gradient(ellipse at center, var(--shadow-strong) 0%, transparent 72%);
+    border-radius: 50%;
+    transform: translateX(-50%) scale(1);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1.3);
+  }
+  .final-cta img {
+    position: relative;
+    width: 200px; height: 200px; object-fit: contain; display: block;
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1.3);
+  }
+  .mascot-jump:hover::after { transform: translateX(-50%) scale(1.5); }
+  .mascot-jump:hover img { transform: translateY(-14px) rotate(-2deg); }
   .final-cta h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin-bottom: 10px; }
   .final-cta p { color: var(--ink-soft); margin: 0 0 30px; }
   .final-cta .ctas { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
@@ -1197,7 +1215,9 @@
 
   <section class="final-cta">
     <div class="wrap reveal">
-      <img src="img/mascot-illustration.png" data-i18n-alt="final_mascot_alt" alt="El gato de Neko Tools caminando y sonriendo, con una bolsa de compras llena de verduras, pan y leche." loading="lazy" decoding="async">
+      <div class="mascot-jump">
+        <img src="img/mascot-illustration.png" data-i18n-alt="final_mascot_alt" alt="El gato de Neko Tools caminando y sonriendo, con una bolsa de compras llena de verduras, pan y leche." loading="lazy" decoding="async">
+      </div>
       <h2 data-i18n="final_h2">¿Listo para una compra más simple?</h2>
       <p data-i18n="final_p">Neko Lista te acompaña, del changuito al total.</p>
       <div class="ctas">
