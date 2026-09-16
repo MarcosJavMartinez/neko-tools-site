@@ -898,12 +898,26 @@
   .about-signature .role { font-size: 0.85rem; color: var(--ink-faint); }
 
   .contact-card {
-    background: var(--paper-raised);
+    background: var(--paper);
     border: 1px solid var(--line);
     border-radius: 22px;
     padding: 32px;
     box-shadow: 0 30px 60px -34px var(--shadow-strong);
+    position: relative;
   }
+  .contact-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: 22px;
+    background-image: var(--bg-texture);
+    background-size: 560px 560px;
+    background-repeat: repeat;
+    background-position: center;
+    opacity: 0.6;
+  }
+  .contact-card > * { position: relative; z-index: 1; }
   .contact-card h3 { font-size: 1.1rem; margin: 0 0 6px; }
   .contact-card > p { color: var(--ink-soft); font-size: 0.92rem; margin: 0 0 22px; }
   .form-row { margin-bottom: 16px; }
