@@ -170,6 +170,7 @@
   html { -webkit-text-size-adjust: 100%; }
 
   body {
+    overflow-x: clip;
     margin: 0;
     background: var(--paper);
     color: var(--ink);
@@ -410,7 +411,7 @@
     align-items: center;
   }
   @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
   }
 
   .hero-copy { animation: rise 0.7s cubic-bezier(.2,.8,.2,1) both; }
@@ -515,7 +516,7 @@
   }
   .float-card.fc-1 { top: -50px; left: -16px; }
   .float-card.fc-2 { width: 160px; }
-  .float-card.fc-2 { bottom: -22px; left: 360px; }
+  .float-card.fc-2 { bottom: -22px; right: -12px; }
   .float-card {
     transition: transform 0.25s cubic-bezier(.2,.8,.2,1.2), box-shadow 0.25s ease;
   }
@@ -556,6 +557,12 @@
   .reveal.reveal-left  { transform: translateX(-32px); }
   .reveal.reveal-right { transform: translateX(32px); }
   .reveal.is-visible { opacity: 1; transform: none; }
+  /* Antes de revelarse, el corrimiento lateral empujaba la página más ancha
+     que la pantalla en celulares (scroll horizontal hasta hacer scroll). */
+  @media (max-width: 760px) {
+    .reveal.reveal-left  { transform: translateX(-14px); }
+    .reveal.reveal-right { transform: translateX(14px); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .reveal { opacity: 1; transform: none; transition: none; }
   }
@@ -906,7 +913,12 @@
     gap: 64px;
     align-items: start;
   }
-  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; } }
+  /* Sin min-width:0 una palabra larga (ruso, portugués) ensancha la columna
+     más que la pantalla. */
+  .about-grid > *, .hero-grid > * { min-width: 0; }
+  .contact-card .btn { white-space: normal; }
+  @media (max-width: 480px) { .contact-card { padding: 24px 20px; } }
   .about-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 10px 0 14px; }
   .about-copy p { color: var(--ink-soft); font-size: 1.05rem; max-width: 46ch; margin: 0 0 20px; }
   .about-signature {
@@ -1133,7 +1145,7 @@
 
         <div class="device">
           <div class="device-screen">
-            <img src="img/screenshot-lista-en-v2.png" data-i18n-alt="hero_screenshot_alt" alt="Captura real de Neko Lista (interfaz en inglés): lista de compras con Milk, Bread, Eggs, Tomato, Banana, Chicken, Rice y Toilet paper, total $18.900." fetchpriority="high">
+            <img src="img/screenshot-lista-en-v3.png" data-i18n-alt="hero_screenshot_alt" alt="Captura real de Neko Lista (interfaz en inglés): lista de compras con Milk, Bread, Eggs, Tomato, Banana, Chicken, Rice y Toilet paper, total $18.900." fetchpriority="high">
           </div>
         </div>
 
@@ -1227,21 +1239,21 @@
       <div class="gallery-grid">
         <div class="gallery-card reveal" style="--reveal-delay:0s">
           <div class="gallery-frame">
-            <img src="img/screenshot-lista-en-v2.png" data-i18n-alt="gal1_alt" alt="Captura real de la lista de compras con productos, cantidades y precios." loading="lazy" decoding="async">
+            <img src="img/screenshot-lista-en-v3.png" data-i18n-alt="gal1_alt" alt="Captura real de la lista de compras con productos, cantidades y precios." loading="lazy" decoding="async">
           </div>
           <h3 data-i18n="gal1_h3">Tu lista</h3>
           <p data-i18n="gal1_p">Todo lo que necesitás, siempre a mano.</p>
         </div>
         <div class="gallery-card reveal" style="--reveal-delay:0.1s">
           <div class="gallery-frame">
-            <img src="img/screenshot-agregar-en-v2.png" data-i18n-alt="gal2_alt" alt="Captura real del formulario para agregar un producto: nombre, cantidad y precio." loading="lazy" decoding="async">
+            <img src="img/screenshot-agregar-en-v3.png" data-i18n-alt="gal2_alt" alt="Captura real del formulario para agregar un producto: nombre, cantidad y precio." loading="lazy" decoding="async">
           </div>
           <h3 data-i18n="gal2_h3">Agregá en segundos</h3>
           <p data-i18n="gal2_p">Nombre, cantidad y precio. Nada más.</p>
         </div>
         <div class="gallery-card reveal" style="--reveal-delay:0.2s">
           <div class="gallery-frame">
-            <img src="img/screenshot-iconos-en-v2.png" data-i18n-alt="gal3_alt" alt="Captura real del selector de íconos de producto." loading="lazy" decoding="async">
+            <img src="img/screenshot-iconos-en-v3.png" data-i18n-alt="gal3_alt" alt="Captura real del selector de íconos de producto." loading="lazy" decoding="async">
           </div>
           <h3 data-i18n="gal3_h3">Tus íconos</h3>
           <p data-i18n="gal3_p">Personalizá tu lista a tu manera.</p>
