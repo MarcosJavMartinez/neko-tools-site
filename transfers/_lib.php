@@ -53,9 +53,18 @@ function rate_limit(string $bucket, int $max, int $windowSeconds, bool $consume 
     return $state['count'] <= $max;
 }
 
+// Detrás del CDN de Hostinger REMOTE_ADDR ya es la IP real del visitante (se
+// verificó); X-Forwarded-For NO se usa porque el cliente puede falsificarlo.
+// Las IPv6 se agrupan por bloque /64: una casa recibe un /64 entero y podría
+// rotar de dirección adentro de él para esquivar el límite.
 function client_key(): string
 {
-    return (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    $packed = @inet_pton($ip);
+    if ($packed !== false && strlen($packed) === 16) {
+        return bin2hex(substr($packed, 0, 8)) . '/64';
+    }
+    return $ip;
 }
 
 // Borra contadores de rate limit viejos (los códigos de transferencia los
