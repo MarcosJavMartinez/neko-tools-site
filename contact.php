@@ -1,10 +1,17 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
+require __DIR__ . '/transfers/_lib.php';
+send_api_headers();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['ok' => false, 'error' => 'method_not_allowed']);
-    exit;
+    json_fail(405, 'method_not_allowed');
+}
+
+// El formulario vive en esta misma página: un navegador manda Origin con el
+// dominio de la web que hizo el pedido. Si es otra, es un formulario ajeno
+// (o un bot copiando el nuestro) intentando mandar mensajes desde acá.
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if ($origin !== '' && !in_array($origin, ['https://nekotools.site', 'https://www.nekotools.site'], true)) {
+    json_fail(403, 'origin_not_allowed');
 }
 
 $name = trim((string) ($_POST['name'] ?? ''));
@@ -19,16 +26,19 @@ if ($website !== '') {
     exit;
 }
 
+// Sin esto cualquiera podría llenar la bandeja de entrada (y la cuota de
+// envío del hosting) mandando el formulario en bucle.
+if (!rate_limit('contact:' . client_key(), 5, 3600) || !rate_limit('contact:global', 40, 86400)) {
+    header('Retry-After: 3600');
+    json_fail(429, 'too_many_requests');
+}
+
 if ($name === '' || $message === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(422);
-    echo json_encode(['ok' => false, 'error' => 'invalid_input']);
-    exit;
+    json_fail(422, 'invalid_input');
 }
 
 if (mb_strlen($name) > 120 || mb_strlen($message) > 4000 || mb_strlen($email) > 160) {
-    http_response_code(422);
-    echo json_encode(['ok' => false, 'error' => 'too_long']);
-    exit;
+    json_fail(422, 'too_long');
 }
 
 $to = 'marcos.jvr.martinez@gmail.com';
@@ -52,6 +62,5 @@ $sent = mail($to, $subject, $body, $headers);
 if ($sent) {
     echo json_encode(['ok' => true]);
 } else {
-    http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'send_failed']);
+    json_fail(500, 'send_failed');
 }
