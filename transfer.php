@@ -60,7 +60,11 @@ function cleanup_expired(): void
             @unlink($file);
         }
     }
-    cleanup_rate_limit_files();
+    // Los contadores de rate limit se barren de vez en cuando, no en cada
+    // pedido: con muchas IPs distintas el glob se vuelve caro.
+    if (random_int(1, 20) === 1) {
+        cleanup_rate_limit_files();
+    }
 }
 
 function generate_code(): string
@@ -180,7 +184,8 @@ if ($method === 'GET') {
         json_fail($status, $error);
     };
 
-    $code = strtoupper(trim((string) ($_GET['code'] ?? '')));
+    $codeParam = $_GET['code'] ?? '';
+    $code = is_string($codeParam) ? strtoupper(trim($codeParam)) : '';
     if (!preg_match('/^[A-Z0-9]{6}$/', $code)) {
         $miss(422, 'invalid_code');
     }

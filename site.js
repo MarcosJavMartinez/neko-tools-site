@@ -133,10 +133,12 @@
     if (navigator.share) {
       try {
         await navigator.share(shareData);
+        return;
       } catch (error) {
-        // El usuario cerró el diálogo nativo de compartir: no es un error.
+        // Cerrar el diálogo nativo no es un error; cualquier otra falla del
+        // share nativo cae al copiado del link de abajo.
+        if (error && error.name === 'AbortError') return;
       }
-      return;
     }
 
     try {

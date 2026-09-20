@@ -14,10 +14,18 @@ if ($origin !== '' && !in_array($origin, ['https://nekotools.site', 'https://www
     json_fail(403, 'origin_not_allowed');
 }
 
-$name = trim((string) ($_POST['name'] ?? ''));
-$email = trim((string) ($_POST['email'] ?? ''));
-$message = trim((string) ($_POST['message'] ?? ''));
-$website = trim((string) ($_POST['website'] ?? '')); // honeypot: hidden from real visitors
+// Si un campo llega como array (name[]=...) se toma como vacío en vez de
+// convertirlo a string, que dispara un warning de PHP.
+function post_field(string $key): string
+{
+    $value = $_POST[$key] ?? '';
+    return is_string($value) ? trim($value) : '';
+}
+
+$name = post_field('name');
+$email = post_field('email');
+$message = post_field('message');
+$website = post_field('website'); // honeypot: hidden from real visitors
 
 // Bots tend to fill every field, including ones hidden with CSS. If this one
 // has anything in it, pretend success and drop the message silently.
