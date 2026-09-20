@@ -267,6 +267,27 @@
 
   .btn-small { padding: 9px 18px; font-size: 0.85rem; }
 
+  .toast[hidden] { display: none; }
+  .toast {
+    position: fixed;
+    top: calc(16px + env(safe-area-inset-top));
+    left: 50%;
+    z-index: 300;
+    transform: translateX(-50%) translateY(-12px);
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 14px 28px -10px var(--shadow-strong);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
   /* ---------- nav ---------- */
   header.nav {
     position: sticky;
@@ -1091,6 +1112,10 @@
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a class="btn btn-ghost" href="#features" data-i18n="hero_cta_ver_funciones">Ver funciones</a>
+          <button type="button" class="btn btn-ghost" id="btnShareProduct">
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            <span data-i18n="hero_cta_compartir">Compartir</span>
+          </button>
         </div>
       </div>
 
@@ -1324,6 +1349,8 @@
   </section>
 </main>
 
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
 <footer>
   <div class="wrap foot-row">
     <div>
@@ -1443,6 +1470,48 @@
   document.addEventListener('click', function (e) {
     if (boxPop.classList.contains('is-open') && !boxPop.contains(e.target)) {
       setOpen(false);
+    }
+  });
+})();
+
+(function () {
+  var btn = document.getElementById('btnShareProduct');
+  var toast = document.getElementById('toast');
+  if (!btn) return;
+
+  var SHARE_URL = 'https://nekotools.site/#producto';
+  var toastHideTimer = null;
+
+  function showToast(message) {
+    if (!toast) return;
+    clearTimeout(toastHideTimer);
+    toast.textContent = message;
+    toast.hidden = false;
+    toast.getBoundingClientRect();
+    toast.classList.add('is-visible');
+    toastHideTimer = setTimeout(function () {
+      toast.classList.remove('is-visible');
+      setTimeout(function () { toast.hidden = true; }, 200);
+    }, 2400);
+  }
+
+  btn.addEventListener('click', async function () {
+    var shareData = { title: 'Neko Lista', text: t('share_text'), url: SHARE_URL };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        // El usuario cerró el diálogo nativo de compartir: no es un error.
+      }
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(SHARE_URL);
+      showToast(t('share_toast_copied'));
+    } catch (error) {
+      window.prompt(t('share_copy_manual'), SHARE_URL);
     }
   });
 })();
