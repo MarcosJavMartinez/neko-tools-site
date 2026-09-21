@@ -173,7 +173,15 @@ if ($method === 'POST') {
 if ($method === 'GET') {
     // Freno a la adivinación de códigos: pocos intentos fallidos por IP y un
     // tope global, sin importar desde cuántas IPs se pruebe.
-    if (!rate_limit('get:' . $ip, 60, 600)
+    // ?check=CODE dice si un código sigue vivo SIN consumirlo: la app lo usa
+    // para que quien lo generó vea en vivo cuándo el otro dispositivo lo
+    // recibió (y que ya se borró). Tiene su propio tope de pedidos, pero un
+    // código que no existe cuenta como intento fallido igual que al leer.
+    $isCheck = isset($_GET['check']);
+    $requestBucket = $isCheck ? 'check:' : 'get:';
+    $requestMax = $isCheck ? 240 : 60;
+
+    if (!rate_limit($requestBucket . $ip, $requestMax, 600)
         || !rate_limit('fail:' . $ip, 15, 600, false)
         || !rate_limit('fail:global', 200, 600, false)) {
         header('Retry-After: 600');
@@ -186,10 +194,23 @@ if ($method === 'GET') {
         json_fail($status, $error);
     };
 
-    $codeParam = $_GET['code'] ?? '';
+    $codeParam = $isCheck ? ($_GET['check'] ?? '') : ($_GET['code'] ?? '');
     $code = is_string($codeParam) ? strtoupper(trim($codeParam)) : '';
     if (!preg_match('/^[A-Z0-9]{6}$/', $code)) {
         $miss(422, 'invalid_code');
+    }
+
+    if ($isCheck) {
+        $checkPath = store_path($code);
+        $age = file_exists($checkPath) ? time() - (int) @filemtime($checkPath) : PHP_INT_MAX;
+        if ($age <= TTL_SECONDS) {
+            echo json_encode(['ok' => true, 'active' => true, 'remainingSeconds' => TTL_SECONDS - $age]);
+            exit;
+        }
+        rate_limit('fail:' . $ip, 15, 600);
+        rate_limit('fail:global', 200, 600);
+        echo json_encode(['ok' => true, 'active' => false]);
+        exit;
     }
 
     // Se "reclama" el archivo con un rename (atómico): si llegan dos pedidos
