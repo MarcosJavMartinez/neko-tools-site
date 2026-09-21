@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
 <script src="guard.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="i18n.js?v=3"></script>
+<script src="i18n.js?v=4"></script>
 <title>Neko Lista — la lista del súper gratis | Neko Tools</title>
 <meta name="description" content="Neko Lista: la lista del súper que sabe contar. Gratis, sin cuenta, instalable. La primera herramienta de Neko Tools." />
 <meta name="robots" content="index, follow" />
@@ -341,7 +341,9 @@
   .nav-links-mobile-gap { flex: 1; }
 
   @media (max-width: 480px) {
-    .nav-row { padding: 12px 0; }
+    /* "padding: 12px 0" anulaba el margen lateral de .wrap y el logo y el
+       menú quedaban pegados a los bordes de la pantalla. */
+    .nav-row { padding: 12px 16px; gap: 12px; }
   }
 
   @media (max-width: 760px) {
@@ -920,18 +922,46 @@
   .contact-card .btn { white-space: normal; }
   .contact-privacy { margin: 14px 0 0; font-size: 0.82rem; color: var(--ink-faint); }
   .contact-privacy a { color: var(--pine); }
-  section.privacy { padding: 72px 0 80px; }
-  .privacy .section-head { margin-bottom: 28px; }
-  .privacy-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; max-width: 760px; }
-  .privacy-list li {
-    background: var(--paper-raised);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 16px 20px;
-    color: var(--ink-soft);
-    line-height: 1.6;
+  section.privacy { padding: 88px 0 96px; }
+  .privacy .section-head { margin-bottom: 40px; }
+  .privacy-badge {
+    display: flex; align-items: center; justify-content: center;
+    margin-left: auto; margin-right: auto;
+    width: 68px; height: 68px; border-radius: 22px;
+    background: var(--mint); color: var(--pine-deep);
+    border: 1px solid var(--mint-line);
+    box-shadow: 0 18px 34px -18px var(--shadow-strong);
+    margin-bottom: 18px;
   }
-  .privacy-list strong { color: var(--ink); }
+  .privacy-tags { justify-content: center; margin: 22px 0 0; }
+  .privacy-grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px;
+  }
+  .privacy-grid > li { grid-column: span 2; display: flex; }
+  .privacy-grid > li.wide { grid-column: span 3; }
+  .privacy-grid .feature { width: 100%; }
+  .feature.is-accent { background: var(--mint); border-color: var(--mint-line); position: relative; overflow: hidden; }
+  .feature.is-accent > * { position: relative; z-index: 1; }
+  .feature.is-accent .watermark {
+    position: absolute; z-index: 0; right: -22px; bottom: -26px;
+    width: 170px; height: 170px; color: var(--pine); opacity: 0.13;
+    transform: rotate(-8deg); pointer-events: none;
+  }
+  @media (max-width: 600px) { .feature.is-accent .watermark { width: 130px; height: 130px; right: -14px; bottom: -18px; } }
+  .feature.is-accent .ic { background: var(--pine); color: var(--paper); }
+  .privacy-foot { text-align: center; margin: 36px 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+  .privacy-foot a { color: var(--pine); font-weight: 700; }
+  @media (max-width: 900px) {
+    .privacy-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .privacy-grid > li, .privacy-grid > li.wide { grid-column: span 1; }
+    .privacy-grid > li:last-child { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    section.privacy { padding: 64px 0 72px; }
+    .privacy-grid { grid-template-columns: minmax(0, 1fr); }
+    .privacy-grid > li:last-child { grid-column: span 1; }
+  }
   @media (max-width: 480px) { .contact-card { padding: 24px 20px; } }
   .about-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 10px 0 14px; }
   .about-copy p { color: var(--ink-soft); font-size: 1.05rem; max-width: 46ch; margin: 0 0 20px; }
@@ -1379,18 +1409,70 @@
 
   <section class="privacy" id="privacidad">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head center reveal">
+        <span class="privacy-badge" aria-hidden="true">
+          <svg class="icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </span>
         <span class="kicker" data-i18n="priv_kicker">Privacidad</span>
         <h2 data-i18n="priv_h2">Tu información, en pocas palabras.</h2>
         <p data-i18n="priv_lede">Neko Tools no tiene cuentas ni publicidad. Esto es todo lo que pasa con tus datos.</p>
+        <div class="hero-tags privacy-tags">
+          <span class="tag" data-i18n="tag_sin_cuenta">Sin cuenta</span>
+          <span class="tag" data-i18n="priv_tag_ads">Sin anuncios</span>
+          <span class="tag" data-i18n="priv_tag_tracking">Sin seguimiento</span>
+        </div>
       </div>
-      <ul class="privacy-list">
-        <li><strong data-i18n="priv_1_h">Tu lista es tuya.</strong> <span data-i18n="priv_1_p">Neko Lista guarda tus productos solo en tu dispositivo. Nosotros no los vemos ni los guardamos, salvo si usás un código de transferencia (más abajo).</span></li>
-        <li><strong data-i18n="priv_2_h">Códigos de transferencia.</strong> <span data-i18n="priv_2_p">Si pasás tu lista a otro dispositivo con un código, se sube a nuestro servidor solo mientras el código sea válido: 15 minutos o hasta que se use, lo que pase primero. Después se borra.</span></li>
-        <li><strong data-i18n="priv_3_h">Formulario de contacto.</strong> <span data-i18n="priv_3_p">Tu nombre, mail y mensaje llegan a mi correo y los uso solo para responderte. No los comparto ni los uso para publicidad. Si querés que borre un mensaje, pedímelo por el mismo formulario.</span></li>
-        <li><strong data-i18n="priv_4_h">Sin seguimiento.</strong> <span data-i18n="priv_4_p">No usamos cookies de seguimiento, analítica ni publicidad.</span></li>
-        <li><strong data-i18n="priv_5_h">Servicios de terceros.</strong> <span data-i18n="priv_5_p">Las tipografías se cargan desde Google Fonts, y para leer PDF o fotos la app descarga librerías de cdnjs y jsDelivr; esos servicios ven tu dirección IP al cargarse. Los apoyos pasan por Ko-fi, que tiene su propia política. Además, el hosting registra visitas técnicas (IP y fecha), y para evitar abusos guardamos por un par de horas una huella cifrada de tu conexión, no tu IP.</span></li>
+
+      <ul class="privacy-grid">
+        <li class="reveal" style="--reveal-delay:0s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="3"></rect><path d="M10.5 18.5h3"></path></svg>
+            </span>
+            <h3 data-i18n="priv_1_h">Tu lista es tuya.</h3>
+            <p data-i18n="priv_1_p">Neko Lista guarda tus productos solo en tu dispositivo. Nosotros no los vemos ni los guardamos, salvo si usás un código de transferencia (más abajo).</p>
+          </div>
+        </li>
+        <li class="reveal" style="--reveal-delay:0.08s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14"></path><path d="m14 4 4 4-4 4"></path><path d="M20 16H6"></path><path d="m10 12-4 4 4 4"></path></svg>
+            </span>
+            <h3 data-i18n="priv_2_h">Códigos de transferencia.</h3>
+            <p data-i18n="priv_2_p">Si pasás tu lista a otro dispositivo con un código, se sube a nuestro servidor solo mientras el código sea válido: 15 minutos o hasta que se use, lo que pase primero. Después se borra.</p>
+          </div>
+        </li>
+        <li class="reveal" style="--reveal-delay:0.16s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m4 8 8 5.5L20 8"></path></svg>
+            </span>
+            <h3 data-i18n="priv_3_h">Formulario de contacto.</h3>
+            <p data-i18n="priv_3_p">Tu nombre, mail y mensaje llegan a mi correo y los uso solo para responderte. No los comparto ni los uso para publicidad. Si querés que borre un mensaje, pedímelo por el mismo formulario.</p>
+          </div>
+        </li>
+        <li class="wide reveal" style="--reveal-delay:0.1s">
+          <div class="feature is-accent">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            </span>
+            <svg class="watermark" aria-hidden="true" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+            <h3 data-i18n="priv_4_h">Sin seguimiento.</h3>
+            <p data-i18n="priv_4_p">No usamos cookies de seguimiento, analítica ni publicidad.</p>
+          </div>
+        </li>
+        <li class="wide reveal" style="--reveal-delay:0.18s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+            </span>
+            <h3 data-i18n="priv_5_h">Servicios de terceros.</h3>
+            <p data-i18n="priv_5_p">Las tipografías se cargan desde Google Fonts, y para leer PDF o fotos la app descarga librerías de cdnjs y jsDelivr; esos servicios ven tu dirección IP al cargarse. Los apoyos pasan por Ko-fi, que tiene su propia política. Además, el hosting registra visitas técnicas (IP y fecha), y para evitar abusos guardamos por un par de horas una huella cifrada de tu conexión, no tu IP.</p>
+          </div>
+        </li>
       </ul>
+
+      <p class="privacy-foot reveal" data-i18n-html="priv_foot">¿Alguna duda sobre tus datos? <a href="#marca">Escribime</a>.</p>
     </div>
   </section>
 </main>
