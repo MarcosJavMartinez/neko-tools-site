@@ -34,6 +34,10 @@ if ($website !== '') {
     exit;
 }
 
+if (random_int(1, 5) === 1) {
+    cleanup_rate_limit_files();
+}
+
 // Sin esto cualquiera podría llenar la bandeja de entrada (y la cuota de
 // envío del hosting) mandando el formulario en bucle.
 if (!rate_limit('contact:' . client_key(), 5, 3600) || !rate_limit('contact:global', 40, 86400)) {

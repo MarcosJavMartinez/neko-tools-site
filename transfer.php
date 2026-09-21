@@ -61,8 +61,10 @@ function cleanup_expired(): void
         }
     }
     // Los contadores de rate limit se barren de vez en cuando, no en cada
-    // pedido: con muchas IPs distintas el glob se vuelve caro.
-    if (random_int(1, 20) === 1) {
+    // pedido: con muchas IPs distintas el glob se vuelve caro. Uno de cada
+    // 5 mantiene la promesa de la política de privacidad (se borran en pocas
+    // horas) aun con poco tráfico.
+    if (random_int(1, 5) === 1) {
         cleanup_rate_limit_files();
     }
 }

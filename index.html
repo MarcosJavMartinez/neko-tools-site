@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
 <script src="guard.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="i18n.js?v=2"></script>
+<script src="i18n.js?v=3"></script>
 <title>Neko Lista — la lista del súper gratis | Neko Tools</title>
 <meta name="description" content="Neko Lista: la lista del súper que sabe contar. Gratis, sin cuenta, instalable. La primera herramienta de Neko Tools." />
 <meta name="robots" content="index, follow" />
@@ -918,6 +918,20 @@
      más que la pantalla. */
   .about-grid > *, .hero-grid > * { min-width: 0; }
   .contact-card .btn { white-space: normal; }
+  .contact-privacy { margin: 14px 0 0; font-size: 0.82rem; color: var(--ink-faint); }
+  .contact-privacy a { color: var(--pine); }
+  section.privacy { padding: 72px 0 80px; }
+  .privacy .section-head { margin-bottom: 28px; }
+  .privacy-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; max-width: 760px; }
+  .privacy-list li {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 20px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .privacy-list strong { color: var(--ink); }
   @media (max-width: 480px) { .contact-card { padding: 24px 20px; } }
   .about-copy h2 { font-size: clamp(1.7rem, 2.6vw, 2.3rem); margin: 10px 0 14px; }
   .about-copy p { color: var(--ink-soft); font-size: 1.05rem; max-width: 46ch; margin: 0 0 20px; }
@@ -999,7 +1013,7 @@
   .foot-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; }
   .foot-brand img { width: 26px; height: 26px; border-radius: 7px; background: var(--paper-raised); }
   footer .fine { color: var(--ink-faint); font-size: 0.82rem; margin: 0; }
-  footer .links { display: flex; gap: 18px; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
+  footer .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
   footer .links a { text-decoration: none; }
   footer .links a:hover { color: var(--pine); }
 
@@ -1356,9 +1370,27 @@
             <span data-i18n="contact_submit">Enviar mensaje</span>
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
+          <p class="contact-privacy" data-i18n-html="contact_privacy_note">Uso tu nombre y mail solo para responderte. <a href="#privacidad">Más sobre privacidad</a>.</p>
           <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
         </form>
       </div>
+    </div>
+  </section>
+
+  <section class="privacy" id="privacidad">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker" data-i18n="priv_kicker">Privacidad</span>
+        <h2 data-i18n="priv_h2">Tu información, en pocas palabras.</h2>
+        <p data-i18n="priv_lede">Neko Tools no tiene cuentas ni publicidad. Esto es todo lo que pasa con tus datos.</p>
+      </div>
+      <ul class="privacy-list">
+        <li><strong data-i18n="priv_1_h">Tu lista es tuya.</strong> <span data-i18n="priv_1_p">Neko Lista guarda tus productos solo en tu dispositivo. Nosotros no los vemos ni los guardamos, salvo si usás un código de transferencia (más abajo).</span></li>
+        <li><strong data-i18n="priv_2_h">Códigos de transferencia.</strong> <span data-i18n="priv_2_p">Si pasás tu lista a otro dispositivo con un código, se sube a nuestro servidor solo mientras el código sea válido: 15 minutos o hasta que se use, lo que pase primero. Después se borra.</span></li>
+        <li><strong data-i18n="priv_3_h">Formulario de contacto.</strong> <span data-i18n="priv_3_p">Tu nombre, mail y mensaje llegan a mi correo y los uso solo para responderte. No los comparto ni los uso para publicidad. Si querés que borre un mensaje, pedímelo por el mismo formulario.</span></li>
+        <li><strong data-i18n="priv_4_h">Sin seguimiento.</strong> <span data-i18n="priv_4_p">No usamos cookies de seguimiento, analítica ni publicidad.</span></li>
+        <li><strong data-i18n="priv_5_h">Servicios de terceros.</strong> <span data-i18n="priv_5_p">Las tipografías se cargan desde Google Fonts, y para leer PDF o fotos la app descarga librerías de cdnjs y jsDelivr; esos servicios ven tu dirección IP al cargarse. Los apoyos pasan por Ko-fi, que tiene su propia política. Además, el hosting registra visitas técnicas (IP y fecha), y para evitar abusos guardamos por un par de horas una huella cifrada de tu conexión, no tu IP.</span></li>
+      </ul>
     </div>
   </section>
 </main>
@@ -1377,6 +1409,7 @@
     <nav class="links">
       <a href="#producto" data-i18n="nav_neko_lista">Neko Lista</a>
       <a href="#gondola" data-i18n="nav_proximamente">Próximamente</a>
+      <a href="#privacidad" data-i18n="footer_privacy">Privacidad</a>
       <a href="https://ko-fi.com/nekotools" data-i18n="final_apoyar">Apoyar</a>
     </nav>
   </div>
