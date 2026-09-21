@@ -16,6 +16,7 @@ const LANGUAGES = [
 ];
 
 const LANG_KEY = "nekoTools.lang";
+const NUMBER_LOCALES = { es: "es-AR", en: "en-US", pt: "pt-BR", tr: "tr-TR", ru: "ru-RU", ja: "ja-JP" };
 
 const TRANSLATIONS = {
   es: {
@@ -81,6 +82,18 @@ const TRANSLATIONS = {
     receipt_lede: "Ves cuánto llevás gastado antes de llegar a la caja, como un recibo que se arma solo.",
     receipt_sub: "TICKET · LISTA ACTUAL",
     receipt_total: "Total",
+    receipt_i1: "Leche",
+    receipt_i2: "Pan",
+    receipt_i3: "Huevos",
+    receipt_i4: "Tomate",
+    receipt_i5: "Banana",
+    receipt_i6: "Pollo",
+    receipt_i7: "Arroz",
+    receipt_i8: "Papel higiénico",
+    receipt_q1: "×2",
+    receipt_q4: "0,5 kg",
+    receipt_q5: "1 kg",
+    receipt_q6: "1 kg",
 
     gallery_kicker: "Así se ve, sin maquillaje",
     gallery_h2: "Capturas reales de la app.",
@@ -189,6 +202,18 @@ const TRANSLATIONS = {
     receipt_lede: "See how much you're spending before you reach the register, like a receipt that writes itself.",
     receipt_sub: "RECEIPT · CURRENT LIST",
     receipt_total: "Total",
+    receipt_i1: "Milk",
+    receipt_i2: "Bread",
+    receipt_i3: "Eggs",
+    receipt_i4: "Tomato",
+    receipt_i5: "Banana",
+    receipt_i6: "Chicken",
+    receipt_i7: "Rice",
+    receipt_i8: "Toilet paper",
+    receipt_q1: "×2",
+    receipt_q4: "0.5 kg",
+    receipt_q5: "1 kg",
+    receipt_q6: "1 kg",
 
     gallery_kicker: "See it as it really is",
     gallery_h2: "Real screenshots of the app.",
@@ -297,6 +322,18 @@ const TRANSLATIONS = {
     receipt_lede: "Você vê quanto já gastou antes de chegar ao caixa, como um recibo que se monta sozinho.",
     receipt_sub: "TÍQUETE · LISTA ATUAL",
     receipt_total: "Total",
+    receipt_i1: "Leite",
+    receipt_i2: "Pão",
+    receipt_i3: "Ovos",
+    receipt_i4: "Tomate",
+    receipt_i5: "Banana",
+    receipt_i6: "Frango",
+    receipt_i7: "Arroz",
+    receipt_i8: "Papel higiênico",
+    receipt_q1: "×2",
+    receipt_q4: "0,5 kg",
+    receipt_q5: "1 kg",
+    receipt_q6: "1 kg",
 
     gallery_kicker: "Assim ela é, sem maquiagem",
     gallery_h2: "Capturas reais do app.",
@@ -354,7 +391,7 @@ const TRANSLATIONS = {
     lang_toggle_aria: "Dili değiştir",
 
     hero_kicker: "Neko Lista · alışveriş listesi",
-    hero_h1: "Sayı saymayı bilen market listesi.",
+    hero_h1: "<em>Sayı saymayı bilen</em> market listesi.",
     hero_lede: "Miktarlar, fiyatlar ve toplam tutar, eklediğin anda güncellenir. Hesap yok, reklam yok, uğraş yok.",
     tag_gratis: "Ücretsiz",
     tag_sin_cuenta: "Hesap gerektirmez",
@@ -405,6 +442,18 @@ const TRANSLATIONS = {
     receipt_lede: "Kasaya varmadan önce ne kadar harcadığını gör — kendi kendine yazılan bir fiş gibi.",
     receipt_sub: "FİŞ · GÜNCEL LİSTE",
     receipt_total: "Toplam",
+    receipt_i1: "Süt",
+    receipt_i2: "Ekmek",
+    receipt_i3: "Yumurta",
+    receipt_i4: "Domates",
+    receipt_i5: "Muz",
+    receipt_i6: "Tavuk",
+    receipt_i7: "Pirinç",
+    receipt_i8: "Tuvalet kağıdı",
+    receipt_q1: "×2",
+    receipt_q4: "0,5 kg",
+    receipt_q5: "1 kg",
+    receipt_q6: "1 kg",
 
     gallery_kicker: "İşte gerçek hali, rötuşsuz",
     gallery_h2: "Uygulamadan gerçek ekran görüntüleri.",
@@ -513,6 +562,18 @@ const TRANSLATIONS = {
     receipt_lede: "Видно, сколько потрачено, ещё до кассы — как чек, который составляется сам.",
     receipt_sub: "ЧЕК · ТЕКУЩИЙ СПИСОК",
     receipt_total: "Итого",
+    receipt_i1: "Молоко",
+    receipt_i2: "Хлеб",
+    receipt_i3: "Яйца",
+    receipt_i4: "Помидоры",
+    receipt_i5: "Бананы",
+    receipt_i6: "Курица",
+    receipt_i7: "Рис",
+    receipt_i8: "Туалетная бумага",
+    receipt_q1: "×2",
+    receipt_q4: "0,5 кг",
+    receipt_q5: "1 кг",
+    receipt_q6: "1 кг",
 
     gallery_kicker: "Как это выглядит на самом деле",
     gallery_h2: "Реальные скриншоты приложения.",
@@ -570,7 +631,7 @@ const TRANSLATIONS = {
     lang_toggle_aria: "言語を変更",
 
     hero_kicker: "Neko Lista・買い物リスト",
-    hero_h1: "計算できる買い物リスト。",
+    hero_h1: "<em>計算できる</em><wbr>買い物リスト。",
     hero_lede: "数量、価格、合計金額がその場で更新されます。アカウント登録も広告も、面倒な手間もいりません。",
     tag_gratis: "無料",
     tag_sin_cuenta: "アカウント不要",
@@ -621,6 +682,18 @@ const TRANSLATIONS = {
     receipt_lede: "レジに着く前に、自動でできあがるレシートのように使った金額がわかります。",
     receipt_sub: "レシート・現在のリスト",
     receipt_total: "合計",
+    receipt_i1: "牛乳",
+    receipt_i2: "パン",
+    receipt_i3: "卵",
+    receipt_i4: "トマト",
+    receipt_i5: "バナナ",
+    receipt_i6: "鶏肉",
+    receipt_i7: "米",
+    receipt_i8: "トイレットペーパー",
+    receipt_q1: "×2",
+    receipt_q4: "0.5kg",
+    receipt_q5: "1kg",
+    receipt_q6: "1kg",
 
     gallery_kicker: "飾らない、そのままの姿",
     gallery_h2: "アプリの実際のスクリーンショット。",
@@ -720,5 +793,10 @@ function applyStaticTranslations() {
   });
   document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
     el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel));
+  });
+
+  // Precios de ejemplo del recibo: mismo monto, separadores según el idioma.
+  document.querySelectorAll("[data-price]").forEach((el) => {
+    el.textContent = "$" + Number(el.dataset.price).toLocaleString(NUMBER_LOCALES[currentLang] || "es-AR");
   });
 }
