@@ -38,6 +38,11 @@ img { max-width: 100%; }
   --font-display: "Instrument Sans", "Segoe UI", sans-serif;
   --font-body: "Manrope", "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  /* Solo para el isotipo "Neko Lista"/"Neko Tools" en sí (nav, pie, la
+     maqueta del recibo): la misma tipografía de marca que usa la app, para
+     que el nombre se vea igual en los dos productos. El resto de los
+     títulos sigue en --font-display. */
+  --font-brand: "Nunito", "Segoe UI", sans-serif;
 
   --content-w: 1120px;
 
@@ -250,7 +255,7 @@ header.nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-weight: 700;
   font-size: 1.05rem;
   text-decoration: none;
@@ -609,7 +614,7 @@ section.band-sunken {
 .receipt-cut.top { top: -1px; transform: rotate(180deg); }
 .receipt-cut.bottom { bottom: -1px; }
 .receipt-head { text-align: center; margin-bottom: 16px; }
-.receipt-head .name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+.receipt-head .name { font-family: var(--font-brand); font-weight: 700; font-size: 1.05rem; }
 .receipt-head .sub { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); margin-top: 4px; }
 .receipt-line {
   display: flex; align-items: baseline; justify-content: space-between;
@@ -977,7 +982,7 @@ section.privacy { padding: 88px 0 96px; }
 /* ---------- footer ---------- */
 footer { padding: 40px 0 44px; border-top: 1px solid var(--line); }
 .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-.foot-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; }
+.foot-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-brand); font-weight: 700; }
 .foot-brand img { width: 26px; height: 26px; border-radius: 7px; background: var(--paper-raised); }
 footer .fine { color: var(--ink-faint); font-size: 0.82rem; margin: 0; }
 footer .links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); }
@@ -1069,6 +1074,7 @@ footer .links a[aria-current="page"] { color: var(--pine); }
 :lang(ja) {
   --font-display: "Instrument Sans", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
   --font-body: "Manrope", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
+  --font-brand: "Nunito", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Noto Sans JP", sans-serif;
   word-break: auto-phrase;
   line-break: strict;
 }
