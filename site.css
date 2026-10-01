@@ -1080,3 +1080,93 @@ footer .links a[aria-current="page"] { color: var(--pine); }
 }
 :lang(ja) h1, :lang(ja) h2, :lang(ja) h3 { letter-spacing: 0; line-height: 1.25; }
 :lang(ja) .hero-copy h1 { line-height: 1.2; }
+
+/* ==========================================================================
+   Página de Neko Finanzas (finanzas.html)
+   Mismos componentes que la de Neko Lista; cambia la "rampa" de marca al
+   cian del ícono de Neko Finanzas y el patrón de fondo al financiero.
+   ========================================================================== */
+body.page-finanzas {
+  --paper:     #f5f3ee;
+  --sunken:    #e7eef0;
+  --sunken-2:  #dce8eb;
+  --pine:      #067f9c;
+  --pine-deep: #05627a;
+  --pine-black: #ffffff;
+  --leaf:      #16c1da;
+  --mint:      #e3f6fa;
+  --mint-line: #bfe6ee;
+  --line:      #e2ded3;
+  --bg-texture: url("img/bg-pattern-finanzas-light.jpg");
+}
+:root[data-theme="dark"] body.page-finanzas {
+  --paper:     #101d1a;
+  --paper-raised: #172622;
+  --sunken:    #0c1714;
+  --sunken-2:  #1d2d29;
+  --pine:      #2cc0dc;
+  --pine-deep: #1fa6c0;
+  --leaf:      #5fd2e8;
+  --mint:      #173a3f;
+  --mint-line: #1f4a50;
+  --line:      #243631;
+  --bg-texture: url("img/bg-pattern-finanzas-dark.jpg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.page-finanzas {
+    --paper:     #101d1a;
+    --paper-raised: #172622;
+    --sunken:    #0c1714;
+    --sunken-2:  #1d2d29;
+    --pine:      #2cc0dc;
+    --pine-deep: #1fa6c0;
+    --leaf:      #5fd2e8;
+    --mint:      #173a3f;
+    --mint-line: #1f4a50;
+    --line:      #243631;
+    --bg-texture: url("img/bg-pattern-finanzas-dark.jpg");
+  }
+}
+/* El patrón financiero es más grande y marcado que el de comida */
+body.page-finanzas::before { background-size: 760px auto; opacity: 0.5; }
+
+/* Bandas de color: cian profundo en lugar del verde */
+.page-finanzas section.band-sunken { background: color-mix(in srgb, #066f89 86%, transparent); }
+.page-finanzas .band-sunken .receipt-copy .kicker { color: #aeeefa; }
+.page-finanzas .band-sunken .receipt-copy .kicker::before { background: #aeeefa; }
+.page-finanzas .band-sunken .receipt-copy h2 { color: #ffffff; }
+
+/* Recibo: "cómo se calcula tu disponible" */
+.page-finanzas .receipt-line .p.minus { color: var(--coral); }
+.page-finanzas .receipt-total .v { color: var(--pine); }
+.page-finanzas .receipt-line .n .q { display: block; margin-top: 2px; }
+
+/* Ilustración de la billetera en el lugar de la mascota */
+.page-finanzas .hero-mascot { left: -96px; bottom: -26px; width: 210px; }
+.page-finanzas .hero-mascot-mobile { width: 120px; left: -4px; bottom: -18px; }
+.page-finanzas .mascot-jump::before { display: none; }
+
+/* La app está solo en español: aviso para quien lee el sitio en otro idioma */
+.fin-lang-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: -14px 0 26px;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+:lang(es) .fin-lang-note { display: none; }
+
+/* Grilla de funciones de 6 (dos filas de 3) */
+.feature-grid.feature-grid-6 { row-gap: 28px; }
+
+/* En oscuro el cian de marca es claro: el botón principal usa un tono más
+   profundo para que el texto blanco se lea bien. */
+:root[data-theme="dark"] .page-finanzas .btn-primary { background: #087f9a; }
+:root[data-theme="dark"] .page-finanzas .btn-primary:hover { background: #066c85; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-finanzas .btn-primary { background: #087f9a; }
+  :root:not([data-theme="light"]) .page-finanzas .btn-primary:hover { background: #066c85; }
+}
+.nav-links a[aria-current="page"],
+.nav-mobile-links a[aria-current="page"] { color: var(--pine); }

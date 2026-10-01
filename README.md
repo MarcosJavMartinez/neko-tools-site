@@ -1,6 +1,6 @@
 # Neko Tools
 
-Landing page de [Neko Tools](https://nekotools.site): presenta Neko Lista, la primera herramienta de la marca, y adelanta las próximas.
+Sitio de [Neko Tools](https://nekotools.site): presenta Neko Lista (`index.html`) y Neko Finanzas (`finanzas.html`), las herramientas de la marca, y adelanta las próximas.
 
 ### 🌐 [Ver sitio en vivo →](https://nekotools.site)
 
@@ -26,7 +26,7 @@ Landing page de [Neko Tools](https://nekotools.site): presenta Neko Lista, la pr
 
 ## 🛠️ Stack
 
-Sitio estático: HTML, CSS y JavaScript vanilla, sin build ni frameworks. `index.html` es el único punto de entrada; `img/` tiene los assets reales (logo, marca y capturas de la app).
+Sitio estático: HTML, CSS y JavaScript vanilla, sin build ni frameworks. Una página por herramienta (`index.html` para Neko Lista, `finanzas.html` para Neko Finanzas) que comparten `site.css`, `site.js` e `i18n.js`; `img/` tiene los assets reales (logos, marca y capturas de las apps). La página de Neko Finanzas usa los mismos componentes con el tema cian (`body.page-finanzas` en `site.css`).
 
 ## 🚀 Deploy
 

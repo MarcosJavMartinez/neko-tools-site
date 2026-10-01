@@ -111,7 +111,10 @@
   var toast = document.getElementById('toast');
   if (!btn) return;
 
-  var SHARE_URL = 'https://nekotools.site/#producto';
+  // Cada página puede compartir su propio producto con data-share-*.
+  var SHARE_URL = btn.dataset.shareUrl || 'https://nekotools.site/#producto';
+  var SHARE_TITLE = btn.dataset.shareTitle || 'Neko Lista';
+  var SHARE_TEXT_KEY = btn.dataset.shareTextKey || 'share_text';
   var toastHideTimer = null;
 
   function showToast(message) {
@@ -128,7 +131,7 @@
   }
 
   btn.addEventListener('click', async function () {
-    var shareData = { title: 'Neko Lista', text: t('share_text'), url: SHARE_URL };
+    var shareData = { title: SHARE_TITLE, text: t(SHARE_TEXT_KEY), url: SHARE_URL };
 
     if (navigator.share) {
       try {
