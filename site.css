@@ -1170,3 +1170,126 @@ body.page-finanzas::before { background-size: 760px auto; opacity: 0.5; }
 }
 .nav-links a[aria-current="page"],
 .nav-mobile-links a[aria-current="page"] { color: var(--pine); }
+
+/* >>> Neko Finanzas: página nueva */
+/* --- Página nueva: la mascota vuelve a su tamaño (antes iba la billetera) --- */
+/* Los dos gatitos se anclan al centro del teléfono (280 px de ancho), así quedan
+   montados sobre su esquina inferior izquierda a cualquier ancho de pantalla. */
+.page-finanzas .hero-mascot { left: 50%; margin-left: -335px; bottom: -46px; width: 370px; }
+.page-finanzas .hero-mascot-mobile { left: 50%; margin-left: max(-256px, calc(-50vw + 4px)); bottom: -30px; width: 226px; }
+.page-finanzas .mascot-jump { width: 210px; }
+.page-finanzas .gallery-grid { row-gap: 40px; }
+.split-wrap { position: relative; max-width: 460px; }
+.split-wrap { margin-top: 340px; }
+.split-neko { position: absolute; top: -362px; right: 30px; width: 400px; height: auto; z-index: 2; pointer-events: none; filter: drop-shadow(0 16px 20px var(--shadow-strong)); }
+@media (max-width: 900px) { .split-wrap { margin-top: 262px; } .split-neko { top: -276px; right: auto; left: 50%; margin-left: -152px; width: 304px; } }
+.split-points { list-style: none; margin: 26px 0 0; padding: 0; display: flex; flex-direction: column; gap: 16px; max-width: 46ch; }
+.split-points li { position: relative; padding-left: 26px; color: rgba(255, 255, 255, 0.85); font-size: 1rem; line-height: 1.5; }
+.split-points li::before { content: ""; position: absolute; left: 0; top: 0.42em; width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.16); }
+.split-points li.is-goal::before { background: #9d85f2; }
+.split-points li.is-reserved::before { background: #f0b548; }
+.split-points li.is-free::before { background: #4fd6ee; }
+.split-points strong { color: #ffffff; }
+.band-sunken .receipt-copy p.split-note { margin: 24px 0 0; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.22); max-width: 46ch; font-size: 0.92rem; color: rgba(255, 255, 255, 0.72); }
+/* --- Reparto de la plata: total, barra en tres partes y cada parte con su monto --- */
+.split { background: var(--paper-raised); border: 1px solid var(--line); border-radius: 26px; padding: 26px 26px 22px; max-width: 460px; box-shadow: 0 24px 50px -30px var(--shadow-strong); display: flex; flex-direction: column; gap: 18px; }
+.split-total { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.split-total span { font-size: 0.86rem; font-weight: 700; color: var(--ink-soft); }
+.split-total strong { font-family: var(--font-display); font-size: clamp(1.9rem, 3.4vw, 2.4rem); line-height: 1.05; color: var(--ink); font-variant-numeric: tabular-nums; }
+.split-bar { display: flex; gap: 4px; height: 16px; }
+.split-bar .seg { border-radius: 8px; min-width: 10px; }
+.seg-goal { background: #7b5be6; }
+.seg-reserved { background: #e0a22e; }
+.seg-free { background: #16b4d3; }
+.split-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.split-row { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.split-row img { width: 52px; height: 52px; object-fit: contain; }
+.split-name { display: flex; flex-direction: column; min-width: 0; }
+.split-name strong { font-size: 0.98rem; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+.split-name strong::before { content: ""; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: currentColor; }
+.split-row.is-goal .split-name strong::before { background: #7b5be6; }
+.split-row.is-reserved .split-name strong::before { background: #e0a22e; }
+.split-row.is-free .split-name strong::before { background: #16b4d3; }
+.split-name span { font-size: 0.82rem; color: var(--ink-soft); }
+.split-amount { font-family: var(--font-mono); font-weight: 600; font-size: 0.98rem; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.split-row.is-free .split-amount { font-size: 1.2rem; font-weight: 700; color: var(--pine-deep); }
+.split-today { margin: 0; padding: 12px 14px; border-radius: 14px; background: var(--mint); border: 1px solid var(--mint-line); color: var(--ink-soft); font-size: 0.9rem; }
+.split-today strong { color: var(--pine-deep); }
+@media (max-width: 420px) { .split { padding: 20px 16px 18px; } .split-row { grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; } .split-row img { width: 40px; height: 40px; } .split-amount { font-size: 0.9rem; } }
+
+/* --- Capturas que se abren en grande, con el gatito explicando cada una --- */
+.page-finanzas .gallery-frame { cursor: zoom-in; position: relative; }
+.page-finanzas .gallery-frame:focus-visible { outline: 3px solid var(--pine); outline-offset: 4px; }
+.page-finanzas .gallery-frame::after { content: "Ver en grande"; position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); padding: 6px 12px; border-radius: 999px; background: rgba(16, 38, 43, 0.82); color: #ffffff; font-size: 0.78rem; font-weight: 700; line-height: 1.2; white-space: nowrap; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+.page-finanzas .gallery-frame:hover::after, .page-finanzas .gallery-frame:focus-visible::after { opacity: 1; }
+@media (hover: none) { .page-finanzas .gallery-frame::after { opacity: 1; } }
+
+.lb { position: fixed; inset: 0; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 18px 16px; background: rgba(8, 22, 25, 0.95); cursor: zoom-out; }
+/* La captura queda siempre al centro; el gatito ocupa una de las dos columnas de los costados. */
+.lb-stage { display: grid; grid-template-columns: minmax(0, 330px) auto minmax(0, 330px); align-items: end; justify-content: center; cursor: default; min-height: 0; max-width: 100%; }
+.lb-img { display: block; width: auto; max-width: 100%; max-height: calc(100vh - 120px); border-radius: 26px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); min-width: 0; grid-column: 2; grid-row: 1; }
+.lb-guide { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; grid-column: 1; grid-row: 1; margin-right: -34px; position: relative; z-index: 1; animation: lb-in 0.35s ease both; }
+.lb.is-right .lb-guide { grid-column: 3; margin-right: 0; margin-left: -34px; align-items: flex-start; animation-name: lb-in-right; }
+.lb.is-right .lb-neko { transform: scaleX(-1); }
+.lb.is-right .lb-bubble { align-self: flex-end; }
+.lb.is-right .lb-bubble::after { left: auto; right: 150px; }
+@keyframes lb-in { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+@keyframes lb-in-right { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .lb-guide { animation: none; } }
+.lb-neko { width: min(250px, 92%); height: auto; filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.45)); pointer-events: none; }
+.lb-bubble { position: relative; align-self: flex-start; width: min(286px, 100%); padding: 16px 18px 14px; border-radius: 20px; background: #ffffff; color: #16282c; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); display: flex; flex-direction: column; gap: 6px; }
+.lb-bubble::after { content: ""; position: absolute; left: 150px; bottom: -11px; width: 22px; height: 22px; background: #ffffff; transform: rotate(45deg); border-radius: 4px; }
+.lb-title { font-family: var(--font-display); font-size: 1.12rem; line-height: 1.25; color: #067f9c; }
+.lb-text { margin: 0; font-size: 0.95rem; line-height: 1.5; color: #33474c; }
+.lb-count { font-size: 0.78rem; font-weight: 700; color: #7b8d91; font-variant-numeric: tabular-nums; }
+.lb-nav { display: flex; gap: 14px; cursor: default; }
+.lb-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.12); color: #ffffff; font-size: 1.6rem; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px; }
+.lb-btn:hover { background: rgba(255, 255, 255, 0.24); }
+.lb-btn:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
+.lb-close { position: absolute; top: calc(14px + env(safe-area-inset-top, 0px)); right: 14px; font-size: 1.1rem; padding: 0; z-index: 3; }
+
+/* Celular: la captura arriba; abajo, el gatito asomado con su explicación al lado */
+@media (max-width: 760px) {
+  .lb { gap: 8px; padding: 12px 10px; }
+  .lb-stage { display: flex; flex-direction: column-reverse; align-items: center; width: 100%; }
+  .lb-img { max-height: calc(100vh - 300px); border-radius: 20px; }
+  .lb-guide { flex-direction: row-reverse; align-items: flex-end; width: 100%; max-width: 420px; margin: -26px 0 0; gap: 0; }
+  .lb-neko { width: 112px; margin-left: -6px; transform: rotate(-16deg); transform-origin: 40% 80%; flex-shrink: 0; }
+  .lb-bubble { width: auto; flex: 1; min-width: 0; align-self: flex-end; margin-bottom: 8px; padding: 12px 14px 10px; }
+  .lb-bubble::after { left: -8px; bottom: 26px; }
+  .lb.is-right .lb-guide { flex-direction: row; margin: -26px 0 0; align-items: flex-end; }
+  .lb.is-right .lb-neko { margin-left: 0; margin-right: -6px; transform: scaleX(-1) rotate(-16deg); }
+  .lb.is-right .lb-bubble::after { left: auto; right: -8px; }
+  .lb-title { font-size: 1rem; }
+  .lb-text { font-size: 0.86rem; line-height: 1.4; }
+  .lb-btn { width: 40px; height: 40px; font-size: 1.4rem; }
+}
+
+html.lb-open { overflow: hidden; }
+
+/* Celular y tablet: las seis capturas pasan de costado en vez de apilarse (eran más de 4.000 px de alto) */
+@media (max-width: 900px) {
+  .page-finanzas .gallery-grid { display: flex; max-width: none; margin: 0 -20px; padding: 6px 20px 18px; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; -webkit-overflow-scrolling: touch; }
+  .page-finanzas .gallery-card { flex: 0 0 min(76vw, 300px); scroll-snap-align: center; }
+  .page-finanzas .gallery-hint { display: block; }
+}
+.page-finanzas .gallery-hint { display: none; text-align: center; margin: 4px 0 0; font-size: 0.86rem; color: var(--ink-faint); }
+
+/* El gatito presenta las capturas: a la izquierda del título, señalando la galería */
+#galeria .wrap { position: relative; }
+.gallery-neko { position: absolute; left: 6px; top: -46px; width: 250px; height: auto; z-index: 2; pointer-events: none; filter: drop-shadow(0 18px 22px var(--shadow-strong)); }
+@media (max-width: 1100px) { .gallery-neko { width: 190px; left: 14px; top: -6px; } }
+@media (max-width: 900px) { .gallery-neko { position: static; display: block; width: 170px; margin: -28px auto 6px; } }
+
+@media (min-width: 761px) and (max-width: 880px) { .page-finanzas .nav-links { gap: 14px; } .page-finanzas .nav-row { gap: 12px; } .page-finanzas .nav-cta-btn { padding-left: 14px; padding-right: 14px; } }
+
+/* ---------- Pantalla "Estamos trabajando" (mientras <html> tenga la clase mnt) ---------- */
+.mnt-screen { display: none; }
+html.mnt body > header, html.mnt body > main, html.mnt body > footer, html.mnt body > .toast { display: none; }
+html.mnt .mnt-screen, .mnt-screen.is-page { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 100vh; padding: 32px 20px 48px; text-align: center; }
+.mnt-brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-brand); font-weight: 700; font-size: 1.15rem; color: var(--ink); text-decoration: none; margin-bottom: 6px; }
+.mnt-brand img { width: 40px; height: 40px; border-radius: 12px; }
+.mnt-neko { width: min(300px, 72vw); height: auto; filter: drop-shadow(0 22px 28px var(--shadow-strong)); }
+.mnt-screen h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); margin: 4px 0 0; }
+.mnt-screen p { max-width: 42ch; margin: 0 0 10px; color: var(--ink-soft); font-size: 1.05rem; }
+/* <<< Neko Finanzas: página nueva */

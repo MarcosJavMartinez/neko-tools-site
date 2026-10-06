@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="es-AR">
+<html lang="es-AR" class="mnt">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
 <script src="guard.js?v=1"></script>
+<script src="mantenimiento.js?v=1"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script src="i18n.js?v=7"></script>
 <title>Neko Finanzas — tus finanzas personales, simples y gratis | Neko Tools</title>
 <meta name="description" content="Neko Finanzas: cuánto tenés, cuánto reservar para las facturas, cuánto podés gastar y cuánto estás ahorrando. Gratis, sin cuenta y privada. La segunda herramienta de Neko Tools." />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="noindex, follow" />
 <link rel="canonical" href="https://nekotools.site/finanzas.html" />
 <link rel="icon" type="image/png" href="img/tool-icon-2.png" />
 <link rel="apple-touch-icon" href="img/tool-icon-2.png" />
@@ -60,10 +61,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,500;0,600;0,700;1,600&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="site.css?v=4">
+<link rel="stylesheet" href="site.css?v=5">
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body class="page-finanzas">
+
+<div class="mnt-screen" role="status">
+  <a class="mnt-brand" href="index.html"><img src="img/neko-tools-mark-v2.png" alt=""><span><span class="brand-neko">Neko</span> Tools</span></a>
+  <img class="mnt-neko" src="img/neko-trabajando.webp" alt="El gatito de Neko Tools con casco de obra, ajustando un engranaje con una llave." width="320" height="320">
+  <h1>Estamos trabajando</h1>
+  <p>Neko Finanzas está casi lista: le estamos dando los últimos ajustes. Volvé en unos días.</p>
+  <a class="btn btn-primary" href="index.html">Ir a Neko Tools</a>
+</div>
+
 
 <header class="nav">
   <div class="wrap nav-row">
@@ -112,7 +122,7 @@
       <div class="hero-copy">
         <span class="kicker" data-i18n="fin_hero_kicker">Neko Finanzas · finanzas personales</span>
         <h1 data-i18n-html="fin_hero_h1">Tu plata, <em>clara</em> de un vistazo.</h1>
-        <p class="lede" data-i18n="fin_hero_lede">Cuánto tenés, cuánto reservar para las facturas, cuánto podés gastar y cuánto estás ahorrando. Sin cuenta, sin anuncios, sin vueltas.</p>
+        <p class="lede">Cuánto tenés, cuánto reservar para facturas y cuotas, cuánto podés gastar hoy y cuánto estás ahorrando. Sin cuenta, sin anuncios, sin vueltas.</p>
         <div class="hero-tags">
           <span class="tag" data-i18n="tag_gratis">Gratis</span>
           <span class="tag" data-i18n="tag_sin_cuenta">Sin cuenta</span>
@@ -134,18 +144,18 @@
       </div>
 
       <div class="hero-device-col">
-        <img class="hero-mascot" src="img/finanzas-wallet.png" alt="" decoding="async">
-        <img class="hero-mascot-mobile" src="img/finanzas-wallet.png" alt="">
+        <img class="hero-mascot" src="img/hero-mascot-finanzas.webp" alt="" decoding="async">
+        <img class="hero-mascot-mobile" src="img/mascot-phone-finanzas.webp" alt="">
         <div class="float-card fc-1">
           <span class="ic">
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="14" r="1.3" fill="currentColor"/></svg>
           </span>
-          <div class="tx"><div class="k" data-i18n="fin_float1_k">Saldo disponible</div><div class="v" data-i18n="fin_float1_v">lo que podés gastar</div></div>
+          <div class="tx"><div class="k">Hoy podés gastar</div><div class="v">sin tocar lo reservado</div></div>
         </div>
 
         <div class="device">
           <div class="device-screen">
-            <img src="img/screenshot-finanzas-inicio.jpg" width="780" height="1688" data-i18n-alt="fin_hero_screenshot_alt" alt="Captura real de Neko Finanzas: saldo disponible de $457.568 de $2.423.554 totales, ingresos, gastos y metas del mes." fetchpriority="high">
+            <img src="img/s-inicio.webp" width="780" height="1688" alt="Captura real de Neko Finanzas: saldo disponible, cuánto podés gastar hoy y tus cuentas." fetchpriority="high">
           </div>
         </div>
 
@@ -153,7 +163,7 @@
           <span class="ic">
             <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           </span>
-          <div class="tx"><div class="k" data-i18n="fin_float2_k">Facturas</div><div class="v" data-i18n="fin_float2_v">reservadas solas</div></div>
+          <div class="tx"><div class="k">Facturas y cuotas</div><div class="v">reservadas solas</div></div>
         </div>
       </div>
     </div>
@@ -164,7 +174,7 @@
       <div class="section-head reveal">
         <span class="kicker" data-i18n="fin_features_kicker">Hecha para el día a día</span>
         <h2 data-i18n="fin_features_h2">Todo lo que necesitás para ordenar tu plata, nada más.</h2>
-        <p data-i18n="fin_features_lede">Anotás lo que entra y lo que sale; la app hace las cuentas.</p>
+        <p>Empezás con un cuestionario corto que carga todo por vos. Después anotás lo que entra y lo que sale; la app hace las cuentas.</p>
       </div>
       <div class="feature-grid feature-grid-6">
         <div class="reveal" style="--reveal-delay:0s">
@@ -173,7 +183,7 @@
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M19 7V5.5A1.5 1.5 0 0 0 17.5 4H5a2 2 0 0 0 0 4h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H5a2 2 0 0 1-2-2V6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="14" r="1.3" fill="currentColor"/></svg>
             </span>
             <h3 data-i18n="fin_feat1_h3">Saldo disponible de verdad</h3>
-            <p data-i18n="fin_feat1_p">No es solo ingresos menos gastos: descuenta las facturas que se vienen y lo que apartaste para tus metas.</p>
+            <p>No es solo ingresos menos gastos: descuenta las facturas, cuotas y deudas que se vienen y lo que apartaste para tus metas.</p>
           </div>
         </div>
         <div class="reveal" style="--reveal-delay:0.1s">
@@ -182,7 +192,7 @@
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4M8 14h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </span>
             <h3 data-i18n="fin_feat2_h3">Facturas con fecha</h3>
-            <p data-i18n="fin_feat2_p">Luz, internet, alquiler o suscripciones, con su vencimiento y un calendario. Al pagarlas, pasan solas al mes siguiente.</p>
+            <p>Luz, internet, alquiler o suscripciones, con su vencimiento, un calendario y avisos opcionales. Al pagarlas, pasan solas al mes siguiente.</p>
           </div>
         </div>
         <div class="reveal" style="--reveal-delay:0.2s">
@@ -200,7 +210,7 @@
               <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 12A9 9 0 1 1 12 3v9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
             </span>
             <h3 data-i18n="fin_feat4_h3">Presupuestos simples</h3>
-            <p data-i18n="fin_feat4_p">Repartí tus ingresos por porcentaje o monto fijo y te avisa, sin retos, cuando te estás pasando.</p>
+            <p>Repartí tus ingresos por porcentaje o monto fijo. Reservá el súper del mes y, si sobra, pasalo a una meta.</p>
           </div>
         </div>
         <div class="reveal" style="--reveal-delay:0.1s">
@@ -221,6 +231,33 @@
             <p data-i18n="fin_feat6_p">Tus números se guardan solo en tu teléfono. Funciona sin internet y no hay anuncios.</p>
           </div>
         </div>
+        <div class="reveal" style="--reveal-delay:0s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2.5" stroke="currentColor" stroke-width="2"/><path d="M3 10.5h18M7 15h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Tarjeta y cuotas</h3>
+            <p>Cargás la compra una vez y cada cuota cae sola en su mes. Ves cuánto debés hoy y cuánto te queda por pagar.</p>
+          </div>
+        </div>
+        <div class="reveal" style="--reveal-delay:0.1s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 7h11l-3-3M17 17H6l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Préstamos</h3>
+            <p>Anotá lo que prestaste y lo que te prestaron, con cada devolución. Siempre sabés cuánto falta.</p>
+          </div>
+        </div>
+        <div class="reveal" style="--reveal-delay:0.2s">
+          <div class="feature">
+            <span class="ic">
+              <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 9h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M16 10h1.5a2 2 0 0 1 0 4H16M8 3v2.5M12 3v2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Cuánto gastar hoy</h3>
+            <p>Tu disponible repartido hasta el próximo cobro. Ponete un límite de gustos por día: lo que no gastás se acumula.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -231,21 +268,42 @@
     <div class="wrap receipt-wrap">
       <div class="receipt-copy reveal reveal-left">
         <span class="kicker" data-i18n="fin_receipt_kicker">La cuenta, a la vista</span>
-        <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;" data-i18n="fin_receipt_h2">Tu disponible, línea por línea.</h2>
-        <p style="font-size:1.05rem; max-width:44ch;" data-i18n="fin_receipt_lede">Neko Finanzas separa lo que ya tiene destino de lo que realmente podés gastar. Siempre ves de dónde sale el número.</p>
+        <h2 style="font-size:clamp(1.7rem,2.6vw,2.3rem); margin:10px 0 12px;">Tu disponible, parte por parte.</h2>
+        <p style="font-size:1.05rem; max-width:44ch;">De todo lo que tenés, una parte ya tiene destino. Neko Finanzas la separa y te muestra lo que realmente podés gastar, y cuánto de eso te toca hoy.</p>
+        <ul class="split-points">
+          <li class="is-goal"><strong>Primero, tus metas.</strong> Lo que guardás para un viaje o una emergencia no cuenta como plata para gastar.</li>
+          <li class="is-reserved"><strong>Después, lo que vence pronto.</strong> Facturas, cuotas de la tarjeta y deudas con fecha se descuentan antes de que lleguen.</li>
+          <li class="is-free"><strong>El resto es tuyo.</strong> Y se reparte por día hasta tu próximo cobro, para que llegues tranquilo a fin de mes.</li>
+        </ul>
+        <p class="split-note">La app nunca mueve plata sola: te muestra la cuenta y vos decidís.</p>
       </div>
       <div class="reveal reveal-right" style="--reveal-delay:0.1s">
-        <div class="receipt">
-          <div class="receipt-cut top"></div>
-          <div class="receipt-head">
-            <div class="name"><span class="brand-neko">Neko</span> Finanzas</div>
-            <div class="sub" data-i18n="fin_receipt_sub">TU DISPONIBLE · ESTE MES</div>
+        <div class="split-wrap">
+        <img class="split-neko" src="img/neko-repartiendo-grande.webp" alt="" width="400" height="390" loading="lazy">
+        <div class="split">
+          <p class="split-total"><span>Tu plata total</span><strong>$2.890.555</strong></p>
+          <div class="split-bar" role="img" aria-label="De tu plata total, 59% está apartado en metas, 23% reservado y 18% disponible.">
+            <span class="seg seg-goal" style="flex:59"></span><span class="seg seg-reserved" style="flex:23.5"></span><span class="seg seg-free" style="flex:17.5"></span>
           </div>
-          <div class="receipt-line"><span class="n"><span data-i18n="fin_receipt_total_money">Dinero total</span><span class="q" data-i18n="fin_receipt_total_money_q">lo que tenés hoy</span></span><span class="p" data-price="2423555">$2.423.555</span></div>
-          <div class="receipt-line"><span class="n"><span data-i18n="fin_receipt_bills">Facturas a reservar</span><span class="q" data-i18n="fin_receipt_bills_q">vencen en los próximos 30 días</span></span><span class="p minus">−<span data-price="258487">$258.487</span></span></div>
-          <div class="receipt-line" style="border-bottom:none;"><span class="n"><span data-i18n="fin_receipt_goals">Apartado en metas</span><span class="q" data-i18n="fin_receipt_goals_q">viaje, consola, emergencias…</span></span><span class="p minus">−<span data-price="1707500">$1.707.500</span></span></div>
-          <div class="receipt-total"><span class="l" data-i18n="fin_receipt_available">Disponible</span><span class="v" data-price="457568">$457.568</span></div>
-          <div class="receipt-cut bottom"></div>
+          <ul class="split-rows">
+            <li class="split-row is-goal">
+              <img src="img/ilus-alcancia.webp" alt="" width="52" height="52" loading="lazy">
+              <span class="split-name"><strong>Apartado en metas</strong><span>viaje, consola, emergencias</span></span>
+              <span class="split-amount">$1.707.500</span>
+            </li>
+            <li class="split-row is-reserved">
+              <img src="img/ilus-factura.webp" alt="" width="52" height="52" loading="lazy">
+              <span class="split-name"><strong>Reservado</strong><span>facturas, cuotas y deudas que vencen pronto</span></span>
+              <span class="split-amount">$678.487</span>
+            </li>
+            <li class="split-row is-free">
+              <img src="img/hero-wallet.webp" alt="" width="52" height="52" loading="lazy">
+              <span class="split-name"><strong>Disponible</strong><span>lo que podés gastar tranquilo</span></span>
+              <span class="split-amount">$504.568</span>
+            </li>
+          </ul>
+          <p class="split-today">Repartido hasta tu próximo cobro: <strong>hoy podés gastar $19.406</strong></p>
+        </div>
         </div>
       </div>
     </div>
@@ -256,38 +314,100 @@
       <div class="section-head center reveal" style="margin-left:auto;margin-right:auto;">
         <span class="kicker" data-i18n="fin_gallery_kicker">Así se ve, sin maquillaje</span>
         <h2 data-i18n="fin_gallery_h2">Capturas reales de la app.</h2>
-        <p data-i18n="fin_gallery_lede">Tres pantallas, tres preguntas respondidas.</p>
+        <p>Seis pantallas, seis preguntas respondidas.</p>
       </div>
+      <img class="gallery-neko" src="img/neko-explicando.webp" alt="" width="280" height="269" loading="lazy">
       <div class="gallery-grid">
-        <div class="gallery-card reveal" style="--reveal-delay:0s">
+        <div class="gallery-card reveal" style="--reveal-delay:0s" data-explain="Arriba está tu saldo disponible: lo que podés gastar sin tocar lo reservado ni tus metas. Más abajo te digo cuánto te toca por día hasta que cobres.">
           <div class="gallery-frame">
-            <img src="img/screenshot-finanzas-inicio.jpg" width="780" height="1688" data-i18n-alt="fin_gal1_alt" alt="Captura real del inicio de Neko Finanzas con el saldo disponible, el resumen del mes y las acciones rápidas." loading="lazy" decoding="async">
+            <img src="img/s-inicio.webp" width="780" height="1688" alt="Inicio de Neko Finanzas con el saldo disponible, cuánto gastar hoy y las cuentas." loading="lazy" decoding="async">
           </div>
-          <h3 data-i18n="fin_gal1_h3">¿Cuánto puedo gastar?</h3>
-          <p data-i18n="fin_gal1_p">Tu saldo disponible, apenas abrís la app.</p>
+          <h3>¿Cuánto puedo gastar?</h3>
+          <p>Tu disponible y tu monto para hoy, apenas abrís la app.</p>
         </div>
-        <div class="gallery-card reveal" style="--reveal-delay:0.1s">
+        <div class="gallery-card reveal" style="--reveal-delay:0.1s" data-explain="Acá ves cuánto tenés que reservar y un calendario con cada vencimiento. Los días marcados son los que vence algo.">
           <div class="gallery-frame">
-            <img src="img/screenshot-finanzas-facturas.jpg" width="780" height="1688" data-i18n-alt="fin_gal2_alt" alt="Captura real de la pantalla de facturas: dinero a reservar y calendario de vencimientos del mes." loading="lazy" decoding="async">
+            <img src="img/s-facturas.webp" width="780" height="1688" alt="Pantalla de facturas: dinero a reservar y calendario de vencimientos." loading="lazy" decoding="async">
           </div>
-          <h3 data-i18n="fin_gal2_h3">¿Qué vence este mes?</h3>
-          <p data-i18n="fin_gal2_p">Calendario de facturas y cuánto reservar.</p>
+          <h3>¿Qué vence este mes?</h3>
+          <p>Calendario de facturas y cuánto reservar.</p>
         </div>
-        <div class="gallery-card reveal" style="--reveal-delay:0.2s">
+        <div class="gallery-card reveal" style="--reveal-delay:0.2s" data-explain="Cada meta tiene su barra de avance. Lo que apartás acá deja de contar como plata para gastar.">
           <div class="gallery-frame">
-            <img src="img/screenshot-finanzas-metas.jpg" width="780" height="1688" data-i18n-alt="fin_gal3_alt" alt="Captura real de las metas de ahorro con su progreso: viaje, consola, ropa y fondo de emergencia." loading="lazy" decoding="async">
+            <img src="img/s-metas.webp" width="780" height="1688" alt="Metas de ahorro con su progreso." loading="lazy" decoding="async">
           </div>
-          <h3 data-i18n="fin_gal3_h3">¿Cuánto estoy ahorrando?</h3>
-          <p data-i18n="fin_gal3_p">Tus metas y cuánto les falta.</p>
+          <h3>¿Cuánto estoy ahorrando?</h3>
+          <p>Tus metas y cuánto les falta.</p>
+        </div>
+        <div class="gallery-card reveal" style="--reveal-delay:0s" data-explain="La primera vez te hago unas preguntas cortas y cargo todo por vos: cuentas, tarjeta, facturas, préstamos y metas.">
+          <div class="gallery-frame">
+            <img src="img/s-cuestionario.webp" width="780" height="1688" alt="Cuestionario de inicio que pregunta por cuentas, tarjeta, facturas y metas." loading="lazy" decoding="async">
+          </div>
+          <h3>¿Por dónde empiezo?</h3>
+          <p>Un cuestionario corto carga todo por vos.</p>
+        </div>
+        <div class="gallery-card reveal" style="--reveal-delay:0.1s" data-explain="Toda tu plata junta, y también cuenta por cuenta: banco, efectivo, billetera, dólares y la tarjeta de crédito.">
+          <div class="gallery-frame">
+            <img src="img/s-cuentas.webp" width="780" height="1688" alt="Pantalla de cuentas con el total y cada cuenta, incluida la tarjeta de crédito." loading="lazy" decoding="async">
+          </div>
+          <h3>¿Dónde está mi plata?</h3>
+          <p>Banco, efectivo, billetera, dólares y tarjeta.</p>
+        </div>
+        <div class="gallery-card reveal" style="--reveal-delay:0.2s" data-explain="Así se reparten tus ingresos. Cada presupuesto te muestra cuánto gastaste y cuánto te queda.">
+          <div class="gallery-frame">
+            <img src="img/s-presupuestos.webp" width="780" height="1688" alt="Presupuestos del mes con su barra de avance." loading="lazy" decoding="async">
+          </div>
+          <h3>¿En qué se me va?</h3>
+          <p>Tus presupuestos y cuánto te queda en cada uno.</p>
+        </div>
+      </div>
+      <p class="gallery-hint">Deslizá para ver las seis</p>
+    </div>
+  </section>
+
+
+  <section class="band-sunken" id="gondola">
+    <div class="wave wave-top" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wave wave-bottom" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wrap">
+      <div class="reveal">
+        <div class="shelf">
+          <div class="box-pop" role="button" tabindex="0" aria-pressed="false" data-i18n-aria-label="box_aria" aria-label="Ver un adelanto de las próximas herramientas">
+            <img class="box-closed" src="img/box-illustration.png" data-i18n-alt="box_closed_alt" alt="Una caja de cartón cerrada con cinta verde y un sticker de gato: las próximas herramientas de Neko Tools, en camino." loading="lazy" decoding="async">
+            <img class="box-open" src="img/box-open.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-1" src="img/tool-icon-1.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-2" src="img/tool-icon-2.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-3" src="img/tool-icon-3.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-4" src="img/tool-icon-4.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-5" src="img/tool-icon-5.png" alt="" loading="lazy" decoding="async">
+            <img class="tool-icon ti-6" src="img/tool-icon-6.png" alt="" loading="lazy" decoding="async">
+            <span class="box-hint" aria-hidden="true"></span>
+          </div>
+          <div>
+            <span class="shelf-slot"><span class="dot"></span><span data-i18n="gondola_slot">Más herramientas, pronto</span></span>
+            <h2>Neko Finanzas es la segunda. No la última.</h2>
+            <p>Primero fue Neko Lista, para las compras. Estamos creando herramientas simples para la vida real, bajo un mismo techo: Neko Tools.</p>
+            <div class="shelf-actions">
+              <a class="btn btn-ghost btn-small" href="index.html#producto">
+                <span>Conocer Neko Lista</span>
+                <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a class="btn btn-ghost btn-small" href="#marca">
+                <span data-i18n="gondola_cta">Conocer Neko Tools</span>
+                <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+
   <section class="final-cta">
     <div class="wrap reveal">
       <div class="mascot-jump">
-        <img src="img/finanzas-wallet.png" data-i18n-alt="fin_final_wallet_alt" alt="Una billetera celeste con una moneda dorada y una plantita que crece." loading="lazy" decoding="async">
+        <img src="img/mascot-finanzas.webp" alt="El gatito de Neko Tools caminando feliz con una moneda dorada." loading="lazy" decoding="async">
       </div>
       <h2 data-i18n="fin_final_h2">¿Listo para ordenar tu plata?</h2>
       <p data-i18n="fin_final_p">Neko Finanzas te acompaña, del sueldo a la última factura.</p>
@@ -297,6 +417,57 @@
           <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-9.5-9C1 8 2.3 4.8 5.5 4.2 7.7 3.8 10 5 12 7c2-2 4.3-3.2 6.5-2.8C21.7 4.8 23 8 21.5 11c-2.5 4.6-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
           <span data-i18n="final_apoyar">Apoyar</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-sunken" id="marca">
+    <div class="wave wave-top" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wave wave-bottom" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,10 1080,70 1440,40 L1440,80 L0,80 Z" fill="var(--paper)"></path></svg></div>
+    <div class="wrap about-grid">
+      <div class="about-copy reveal reveal-left">
+        <span class="kicker" data-i18n="about_kicker">Quiénes somos</span>
+        <h2 data-i18n="about_h2">Un desarrollador, no una empresa.</h2>
+        <p>Neko Tools lo armo y lo mantengo yo solo. Programo cosas que primero necesito yo: Neko Finanzas nació porque quería saber cuánto podía gastar de verdad, sin planillas ni apps que te piden una cuenta.</p>
+        <p data-i18n="about_p2">Si encontraste un bug, te falta una función, o simplemente querés contarme qué te parece la app, escribime — leo todos los mensajes.</p>
+        <div class="about-signature">
+          <img src="img/neko-tools-mark-v2.png" alt="">
+          <div>
+            <div class="name">Marcos Martínez</div>
+            <div class="role" data-i18n="about_role">Desarrollador de Neko Tools · Argentina</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-right" style="--reveal-delay:0.1s">
+        <form class="contact-card" id="contactForm" novalidate>
+          <h3 data-i18n="contact_h3">Mandame un mensaje</h3>
+          <p data-i18n="contact_lede">Te respondo por mail, normalmente en un día o dos.</p>
+
+          <div class="form-row">
+            <label for="cf-name" data-i18n="contact_label_name">Nombre</label>
+            <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120">
+          </div>
+          <div class="form-row">
+            <label for="cf-email" data-i18n="contact_label_email">Tu email</label>
+            <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="160">
+          </div>
+          <div class="form-row">
+            <label for="cf-message" data-i18n="contact_label_message">Mensaje</label>
+            <textarea id="cf-message" name="message" rows="4" required maxlength="4000"></textarea>
+          </div>
+          <div class="hp-field">
+            <label for="cf-website">Sitio web</label>
+            <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <span data-i18n="contact_submit">Enviar mensaje</span>
+            <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="contact-privacy" data-i18n-html="contact_privacy_note">Uso tu nombre y mail solo para responderte. <a href="privacidad.html" target="_blank" rel="noopener">Más sobre privacidad</a>.</p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -323,6 +494,6 @@
   </div>
 </footer>
 
-<script src="site.js?v=3"></script>
+<script src="site.js?v=4"></script>
 </body>
 </html>

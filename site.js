@@ -263,3 +263,72 @@
 })();
 
 applyStaticTranslations();
+
+// >>> Neko Finanzas: visor de capturas 
+// Capturas de la galería: se abren en grande y el gatito explica cada una.
+  (() => {
+    const cards = [...document.querySelectorAll(".gallery-card")];
+    if (!cards.length || !document.body.classList.contains("page-finanzas")) return;
+    let index = 0, box = null, lastFocus = null;
+    const show = () => {
+      const card = cards[index], img = card.querySelector("img");
+      box.querySelector(".lb-img").src = img.src;
+      box.querySelector(".lb-img").alt = img.alt;
+      box.querySelector(".lb-title").textContent = card.querySelector("h3").textContent;
+      box.querySelector(".lb-text").textContent = card.dataset.explain || card.querySelector("p").textContent;
+      box.querySelector(".lb-count").textContent = (index + 1) + " de " + cards.length;
+      // El gatito va cambiando de lado: a la izquierda en una captura, a la derecha en la siguiente.
+      box.classList.toggle("is-right", index % 2 === 1);
+      const guide = box.querySelector(".lb-guide");
+      guide.style.animation = "none";
+      void guide.offsetWidth;
+      guide.style.animation = "";
+    };
+    const close = () => { box?.remove(); box = null; document.documentElement.classList.remove("lb-open"); document.removeEventListener("keydown", onKey); lastFocus?.focus(); };
+    const step = (d) => { index = (index + d + cards.length) % cards.length; show(); };
+    const onKey = (e) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowRight") step(1);
+      else if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "Tab") {
+        const buttons = [...box.querySelectorAll("button")];
+        const at = buttons.indexOf(document.activeElement);
+        e.preventDefault();
+        buttons[(at + (e.shiftKey ? -1 : 1) + buttons.length) % buttons.length].focus();
+      }
+    };
+    const open = (i, from) => {
+      index = i; lastFocus = from;
+      box = document.createElement("div");
+      box.className = "lb";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.setAttribute("aria-label", "Captura de la app");
+      box.innerHTML = '<button type="button" class="lb-btn lb-close" aria-label="Cerrar">✕</button>' +
+        '<div class="lb-stage">' +
+        '<div class="lb-guide"><div class="lb-bubble" aria-live="polite"><strong class="lb-title"></strong><p class="lb-text"></p><span class="lb-count"></span></div>' +
+        '<img class="lb-neko" src="img/neko-explicando.webp" alt="" width="280" height="266"></div>' +
+        '<img class="lb-img" alt="">' +
+        '</div>' +
+        '<div class="lb-nav"><button type="button" class="lb-btn lb-prev" aria-label="Captura anterior">‹</button><button type="button" class="lb-btn lb-next" aria-label="Captura siguiente">›</button></div>';
+      box.addEventListener("click", (e) => {
+        if (e.target.closest(".lb-prev")) step(-1);
+        else if (e.target.closest(".lb-next")) step(1);
+        else if (e.target.closest(".lb-close") || !e.target.closest(".lb-stage")) close();
+      });
+      document.body.append(box);
+      document.documentElement.classList.add("lb-open");
+      document.addEventListener("keydown", onKey);
+      show();
+      box.querySelector(".lb-next").focus();
+    };
+    cards.forEach((card, i) => {
+      const frame = card.querySelector(".gallery-frame");
+      frame.setAttribute("role", "button");
+      frame.setAttribute("tabindex", "0");
+      frame.setAttribute("aria-label", "Ver en grande: " + card.querySelector("h3").textContent);
+      frame.addEventListener("click", () => open(i, frame));
+      frame.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i, frame); } });
+    });
+  })();
+// <<< Neko Finanzas: visor de capturas 
