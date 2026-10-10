@@ -1,2 +1,7 @@
 # Página propia para direcciones que no existen
 ErrorDocument 404 /404.html
+
+# El README es documentación del repo, no contenido del sitio
+<Files "README.md">
+  Require all denied
+</Files>
